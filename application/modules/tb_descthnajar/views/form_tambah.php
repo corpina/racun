@@ -36,13 +36,7 @@
                     <label class="control-label col-md-2 col-md-3 col-xs-12" for="first-name">Tahun Ajar <span class="required">*</span>
                     </label>
 
-<?php $data_tanggal=  explode('/',$tb_descthnajar['KETX_THN']);
 
-//echo $data_tanggal[0];
-
-//echo $tb_descthnajar['KETX_THN'];
-
-?>
                     <div class="col-md-3">                                   
                         <?php
                         echo form_input(
@@ -53,9 +47,8 @@
                                     'placeholder' => 'Tahun Awal',
                                     'maxlength' => '10',
                                     'required' => 'required',
-									'readonly'=>'readonly',
 									'onchange'=>'get_awal()'
-                                ), set_value('KETX_THN', $data_tanggal[0])
+                                ), set_value('KETX_THN')
                         );
                         ?>
                     </div>
@@ -70,10 +63,8 @@
                                     'placeholder' => 'Tahun Akhir',
                                     'maxlength' => '10',
                                     'required' => 'required',
-									'readonly'=>'readonly',
 									'onchange'=>'get_akhir()'
-
-                                ), set_value('KETX_THN', $data_tanggal[1])
+                                ), set_value('KETX_THN')
                         );
                         ?>
                     </div>
@@ -85,12 +76,13 @@
                     </label>
                     <div class="col-md-3">                                   
 
-                        <input type="text" class="form-control" readonly  value="<?php echo set_value('tanggal_awal',$tb_descthnajar['TGLX_STRT'])?>" placeholder="Tanggal Awal" required="required" name="tanggal_awal" id="tanggal_awal" data-inputmask="'mask': '99/99/9999'">
+                        <input type="text" class="form-control"  value="" placeholder="Tanggal Awal" required="required" name="tanggal_awal" id="tanggal_awal" data-inputmask="'mask': '99/99/9999'">
 
+                        <?php echo form_error('TGLX_STRT'); ?>
                     </div>
                     <div class="col-md-3">                                   
 
-                        <input type="text" class="form-control" readonly value="<?php echo set_value('tanggal_akhir',$tb_descthnajar['TGLX_ENDX'])?>" placeholder=" Tanggal Akhir" required="tanggal_akhir" name="tanggal_akhir" id="tanggal_akhir" data-inputmask="'mask': '99/99/9999'">
+                        <input type="text" class="form-control" value="" placeholder=" Tanggal Akhir" required="tanggal_akhir" name="tanggal_akhir" id="tanggal_akhir" data-inputmask="'mask': '99/99/9999'">
 
                     </div>
                 </div>
@@ -101,7 +93,7 @@
                         <a href="<?php echo site_url('tb_descthnajar'); ?>" class="btn btn-default">
                             <i class="glyphicon glyphicon-chevron-left"></i> Kembali
                         </a> 
-                        <button type="submit" class="btn btn-success" onclick="return confirm('Yakin Hapus Data Ini');"><i class="glyphicon glyphicon-trash"></i> Hapus </button>
+                        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-floppy-save"></i> Simpan </button>
                     </div>
                 </div>
 
@@ -134,9 +126,16 @@
     $(document).ready(function () {
         $(":input").inputmask();
     });
-	
 	function get_awal(){
-		var tahun_awal = $('input["name:tahun_awal"]').val();
-		$("#tanggal_awal").val(tahun_awal+'/07/01');
+		var tahun_awal = $("#tahun_awal").val();
+		$("#tanggal_awal").val('01-07-'+tahun_awal);
+				$("#tanggal_awal").attr('readonly','readonly');
+		//alert(tahun_awal);
+	}
+	function get_akhir(){
+		var tahun_akhir = $("#tahun_akhir").val();
+		$("#tanggal_akhir").val('30-06-'+tahun_akhir);
+				$("#tanggal_akhir").attr('readonly','readonly');
+		//alert(tahun_awal);
 	}
 </script>

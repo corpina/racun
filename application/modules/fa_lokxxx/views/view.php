@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-md-12">		
         <?php
         echo create_breadcrumb();
-        echo $this->session->flashdata('notify');
+        echo $this->session->flashdata('notif');
         ?>
     </div>
 </div><!-- /.row -->

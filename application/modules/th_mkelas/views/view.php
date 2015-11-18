@@ -3,7 +3,7 @@
 		<?php 
                 
                 echo create_breadcrumb();		
-                echo $this->session->flashdata('notify');
+                echo $this->session->flashdata('notif');
                 
                 ?>
 	</div>

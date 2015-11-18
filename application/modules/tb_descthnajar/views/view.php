@@ -3,7 +3,7 @@
         <?php
         echo create_breadcrumb();
 
-        echo $this->session->flashdata('notify');
+        echo $this->session->flashdata('notif');
         ?>
     </div>
 </div><!-- /.row -->
@@ -104,7 +104,7 @@
 
                                         <?php
                                         echo anchor(
-                                                site_url('tb_descthnajar/edit/' . $tb_descthnajar['THNX_AJAR']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
+                                                site_url('tb_descthnajar/edit/' . $tb_descthnajar['THNX_AJAR']), '<i class="glyphicon glyphicon-menu-hamburger"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Lihat Data"'
                                         );
                                         ?>
 

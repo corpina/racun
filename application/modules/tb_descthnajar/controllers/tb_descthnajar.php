@@ -53,7 +53,7 @@ class tb_descthnajar extends CI_Controller {
         $data['action'] = 'tb_descthnajar/save';
         $data['title'] = "Tahun Ajar";
 
-        $this->template->display('tb_descthnajar/form', $data);
+        $this->template->display('tb_descthnajar/form_tambah', $data);
     }
 
     /**
@@ -64,7 +64,7 @@ class tb_descthnajar extends CI_Controller {
         if ($id != '') {
             $data['title'] = "Tahun Ajar";
             $data['tb_descthnajar'] = $this->tb_descthnajars->get_one($id);
-            $data['action'] = 'tb_descthnajar/save/' . $id;
+            $data['action'] = 'tb_descthnajar/destroy/' . $id;
 
 
 
