@@ -153,6 +153,7 @@ class tb_descthnajars extends CI_Model {
 
 
          $data = array(
+			'CABX_CODE'=>'01',
             'THNX_AJAR' => "$thn_awal$thn_akhir",
             'KETX_THN' => $thn,
             'TGLX_STRT' => "$tahun_awal-07-01",

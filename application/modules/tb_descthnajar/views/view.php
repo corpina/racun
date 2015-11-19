@@ -2,17 +2,12 @@
     <div class="col-lg-12 col-md-12">		
         <?php
         echo create_breadcrumb();
-<<<<<<< HEAD
-        echo $this->session->flashdata('notify');
-=======
-
         echo $this->session->flashdata('notif');
->>>>>>> fbc112304bb6708fa88fa9121421292a26a2dc71
         ?>
     </div>
 </div><!-- /.row -->
 
-<!-- content -->
+
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -21,32 +16,32 @@
 					
 					
 					<div class="row">
-                        <!-- button tambah -->
-                        <div class="col-md-6 col-xs-3">                
-                            <?php        
-            										  
-                                echo anchor(
-                                        site_url('tb_descthnajar/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
-                                );					  
-                             ?>                            
-                        </div>
-
-                        <!-- form search -->
-                        <div class="col-md-4 col-xs-9">
-                                                       
-                            <?php echo form_open(site_url('tb_descthnajar/search'), 'role="search" class="form"'); ?>       
-                                       <div class="input-group pull-right">                      
-                                             <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> 
-                                             <span class="input-group-btn">
-                                                  <button class="btn btn-primary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i> Cari</button>
-                                             </span>
-                                       </div>
-                                       
-                            </form> 
-                            <?php echo form_close(); ?>
-                        </div>
-                    </div> <!-- end class row -->
-
+            <div class="col-md-6 col-xs-3">                
+                <?php
+                                  
+										  
+                    echo anchor(
+                            site_url('tb_descthnajar/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
+                    );
+										  
+										  
+                 ?>
+                
+            </div>
+            <div class="col-md-4 col-xs-9">
+                                           
+                 <?php echo form_open(site_url('tb_descthnajar/search'), 'role="search" class="form"'); ?>       
+                           <div class="input-group pull-right">                      
+                                 <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> 
+                                 <span class="input-group-btn">
+                                      <button class="btn btn-primary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i> Cari</button>
+                                 </span>
+                           </div>
+                           
+               </form> 
+                <?php echo form_close(); ?>
+            </div>
+        </div>
 					<!--
                 <div  class="col-md-3 col-xs-9">
                     <?php
@@ -66,8 +61,7 @@
                     <?php echo form_close(); ?>
                 </ul>
                 <div class="clearfix"></div>-->
-                
-            </div><!-- end class x_title -->
+            </div>
 
             <div class="x_content">
                 <?php if ($tb_descthnajars) : ?>
