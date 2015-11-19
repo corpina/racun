@@ -8,7 +8,117 @@
                 ?>
 	</div>
 </div><!-- /.row -->
-ini ferdiyansah
+
+
+<!-- content -->
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <h2>Tabel Unit</h2>
+
+                <div class="row">
+                    <!-- button tambah -->
+                    <div class="col-md-6 col-xs-3">
+                        <?php 
+                            echo anchor(
+                                  site_url('th_mkelas/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip"'
+                              );
+                        ?>
+                    </div>
+
+                    <div class="col-md-4 col-xs-9">
+                        
+                        <?php echo form_open(site_url('th_mkelas/search'), 'role="search" class="form"'); ?>
+                        <div class="input-group pull-right">
+                            <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i>Cari</button>
+                            </span>
+                        </div>
+                        <?php echo form_close(); ?>
+
+                    </div>
+
+                </div><!-- end class row -->
+            </div><!-- end class x_title -->
+
+            <div class="x_content">
+                <?php if($th_mkelass) : ?>
+
+                <table class="table table-striped table-bordered table-condensed table-hover">
+                    <thead>
+                        <tr class="danger">
+
+                            <th class="header">#</th>                
+                            <th>Tahun Ajar</th>   
+                            <th>Kode Kelas</th>   
+                            <th>Nama Kelas</th> 
+                            <th>Tingkatan Kelas</th>
+                            <th>Kode Unit</th>
+                            <th>Unit Sekolah</th>
+                            <th class="red header" align="right" width="120">Aksi</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php foreach ($th_mkelass as $th_mkelas) : ?>
+                        <tr>
+                            <td><?php echo $number++; ?></td>
+
+                            <td><?php echo $th_mkelas['KETX_THN']; ?></td>
+                            <td><?php echo $th_mkelas['KODE_KLSX']; ?></td>
+                            <td><?php echo $th_mkelas['NAMA_KLSX']; ?></td>
+                            <td><?php echo $th_mkelas['TKTX_KLSX']; ?></td>
+                            <td><?php echo $th_mkelas['KODE_UNIT']; ?></td>
+                            <td><?php echo $th_mkelas['NAMA_UNIT']; ?></td>
+
+                            <td>
+                                <?php
+                                echo anchor(
+                                        site_url('th_mkelas/edit/' . $th_mkelas['KODE_KLSX']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"');
+                                ?>
+
+                                <?php
+                                echo anchor(
+                                        site_url('th_mkelas/destroy/' . $th_mkelas['KODE_KLSX']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"');
+                                ?> 
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <?php else : ?>
+                    <?php echo notify('Data th_mkelas belum tersedia', 'info'); ?>
+                <?php endif; ?>
+            </div><!-- end x_content -->
+
+        </div><!-- end class x_panel -->
+    </div>
+
+    <div class="panel-footer">
+        <div class="row">
+           <div class="col-md-3">
+               Th Mkelas
+               <span class="label label-info">
+                    <?php echo $total; ?>
+               </span>
+           </div>  
+           <div class="col-md-9">
+                 <?php echo $pagination; ?>
+           </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!--
 <section class="panel panel-default">
     <header class="panel-heading">
         <div class="row">
@@ -66,7 +176,6 @@ ini ferdiyansah
               	<td><?php echo $number++;; ?> </td>
                
                <td><?php echo $th_mkelas['KETX_THN']; ?></td>
-               
                <td><?php echo $th_mkelas['KODE_KLSX']; ?></td>
                <td><?php echo $th_mkelas['NAMA_KLSX']; ?></td>
                <td><?php echo $th_mkelas['TKTX_KLSX']; ?></td>
@@ -82,7 +191,7 @@ ini ferdiyansah
                                             '<i class="glyphicon glyphicon-eye-open"></i>',
                                             'class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="Detail"'
                                           );
-                   ?>-->
+                   ?>--><!--
                     
                     <?php
                                   echo anchor(

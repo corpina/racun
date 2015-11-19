@@ -166,6 +166,7 @@ class tb_descthnajar extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Tahun Ajar";
         $data['total'] = $config['total_rows'];
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['pagination'] = $this->pagination->create_links();

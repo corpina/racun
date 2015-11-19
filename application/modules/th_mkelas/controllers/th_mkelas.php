@@ -37,6 +37,7 @@ class th_mkelas extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Pembuatan Kelas";
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = (int)$this->uri->segment(3) +1;
@@ -58,6 +59,7 @@ class th_mkelas extends CI_Controller
         $data['fa_unitxxs']         = $this->th_mkelass->get_fa_unitxx();
         $data['tb_descthnajar']         = $this->th_mkelass->get_tb_descthn_ajar();
         $data['get_fa_kelas']         = $this->th_mkelass->get_fa_kelas();
+        $data['title']          = "Pembuatan Kelas";
      
         $this->template->display('th_mkelas/form',$data);
 
@@ -78,6 +80,7 @@ class th_mkelas extends CI_Controller
 			$data['get_fa_kelas']         = $this->th_mkelass->get_fa_kelas();
             $data['th_mkelas']      = $this->th_mkelass->get_one($id);
             $data['action']       = 'th_mkelas/save/' . $id;   
+            $data['title']          = "Pembuatan Kelas";
             $this->template->display('th_mkelas/form',$data);
 			
         }
@@ -207,6 +210,7 @@ class th_mkelas extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Pembuatan Kelas";
         $data['total']          = $config['total_rows'];
         $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();

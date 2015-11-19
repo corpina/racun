@@ -37,10 +37,11 @@ class fa_unitxx extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Unit";
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = (int)$this->uri->segment(3) +1;
-        $data['fa_unitxxs']       = $this->fa_unitxxs->get_all($config['per_page'], $this->uri->segment(3));
+        $data['fa_unitxxs']     = $this->fa_unitxxs->get_all($config['per_page'], $this->uri->segment(3));
         $this->template->display('fa_unitxx/view',$data);
 	      
     }
@@ -54,10 +55,10 @@ class fa_unitxx extends CI_Controller
     public function add() 
     {       
         $data['fa_unitxx'] = $this->fa_unitxxs->add();
-        $data['action']  = 'fa_unitxx/save';
+        $data['action']    = 'fa_unitxx/save';
      
-       $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
-     
+        $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
+        $data['title']     = "Unit";
         
         $this->template->display('fa_unitxx/form',$data);
 
@@ -80,8 +81,8 @@ class fa_unitxx extends CI_Controller
 			//exit();
             $data['action']       = 'fa_unitxx/save/' . $id;           
       
-           $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
-       
+            $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
+            $data['title']          = "Unit";
             
             $this->template->display('fa_unitxx/form',$data);
             
@@ -219,6 +220,7 @@ class fa_unitxx extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Unit";
         $data['total']          = $config['total_rows'];
         $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();
