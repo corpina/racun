@@ -102,7 +102,7 @@
                             'class' => 'form-control input-md ',
                             'placeholder' => 'Keterangan',
                             'maxlength' => '100',
-                            'required' => 'required'
+                            //'required' => 'required'
                                 ), set_value('keterangan', $unit_sekolah['keterangan'])
                         );
                         ?>

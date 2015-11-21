@@ -101,9 +101,12 @@ class jenis_iurans extends CI_Model {
      *
      */
     public function get_one($id) {
-        $this->db->where('', $id);
+        $this->db->where('kode_iuran', $id);
         $result = $this->db->get('jenis_iuran');
 
+        //var_dump($id);
+        //var_dump($result->num_rows());
+          //    exit();
         if ($result->num_rows() == 1) {
             return $result->row_array();
         } else {
@@ -122,7 +125,7 @@ class jenis_iurans extends CI_Model {
             'type_iuran' => '',
             'kode_iuran' => '',
             'nama_iuran' => '',
-            'kode_var' => '',
+            'kode_tujuan' => '',
             'kode_pendapatan' => '',
             'kode_chr1' => '',
             'kode_piutang' => '',
@@ -133,9 +136,6 @@ class jenis_iurans extends CI_Model {
             'kode_dec2' => '',
             'delete_status' => '',
             'created_date' => '',
-            'TRAN_USID' => '',
-            'TRAN_TYPE' => '',
-            'TRAN_COMP' => '',
         );
 
         return $data;
@@ -148,12 +148,33 @@ class jenis_iurans extends CI_Model {
      *     * note : di tabel jenis_iuran banyak kolom yang ga dipake ..
      */
     public function save() {
+
+        $kode_iuran = $this->db->query('select max(kode_iuran) as kode_iuran from jenis_iuran ')->row();
+
+        $kd = $kode_iuran->kode_iuran;
+
+        $kode = "";
+        if ($kd == NULL) {
+            $kode = "01";
+        } else {
+            if ($kd < 10) {
+                $dbwh_10 = (int)$kd + 1; 
+                $kode  ='0'.$dbwh_10;
+            } else {
+                $kode = (int)$kd + 1;
+            }
+        }
+
+        //print_r($kode);
+        //exit();
+
+
         $data = array(
             'kode_unit' => strip_tags($this->input->post('kode_unit', TRUE)),
-            'type_iuran' => strip_tags($this->input->post('type_iuran', TRUE)),
-            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
+            'type_iuran' => 'JNSX_IURN', // strip_tags($this->input->post('type_iuran', TRUE)),
+            'kode_iuran' => $kode,
             'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
-            'kode_var' => strip_tags($this->input->post('kode_var', TRUE)),
+            'kode_tujuan' => strip_tags($this->input->post('kode_tujuan', TRUE)),
             'kode_pendapatan' => strip_tags($this->input->post('kode_pendapatan', TRUE)),
             'kode_chr1' => strip_tags($this->input->post('kode_chr1', TRUE)),
             'kode_piutang' => strip_tags($this->input->post('kode_piutang', TRUE)),
@@ -183,10 +204,10 @@ class jenis_iurans extends CI_Model {
     public function update($id) {
         $data = array(
             'kode_unit' => strip_tags($this->input->post('kode_unit', TRUE)),
-            'type_iuran' => strip_tags($this->input->post('type_iuran', TRUE)),
+            'type_iuran' => 'JNSX_IURN',
             'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
             'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
-            'kode_var' => strip_tags($this->input->post('kode_var', TRUE)),
+            'kode_tujuan' => strip_tags($this->input->post('kode_tujuan', TRUE)),
             'kode_pendapatan' => strip_tags($this->input->post('kode_pendapatan', TRUE)),
             'kode_chr1' => strip_tags($this->input->post('kode_chr1', TRUE)),
             'kode_piutang' => strip_tags($this->input->post('kode_piutang', TRUE)),
@@ -213,7 +234,7 @@ class jenis_iurans extends CI_Model {
      *
      */
     public function destroy($id) {
-        $this->db->where('', $id);
+        $this->db->where('kode_iuran', $id);
         $this->db->delete('jenis_iuran');
     }
 
@@ -236,7 +257,7 @@ class jenis_iurans extends CI_Model {
 
     // get jenis iuran diambil dari master_iuran
     public function get_jenis_iuran() {
-     
+
 
         $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC,CODD_VARC,CODD_VAR1,CODD_CHR1,CODD_CHR2,CODD_CHR3,CODD_CHR4,CODD_CHR5");
         $this->db->where('CODD_FLNM', 'JNSX_IURN');
@@ -300,6 +321,23 @@ class jenis_iurans extends CI_Model {
 
             foreach ($result as $key => $row) {
                 $ret [$row->ACCT_CODE] = $row->ACCT_NAMA; //.' - '.$row->ACCT_CODE;
+            }
+        }
+
+        return $ret;
+    }
+
+    public function get_kas_tujuan() {
+
+
+        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC,CODD_VARC,CODD_VAR1,CODD_CHR1,CODD_CHR2,CODD_CHR3,CODD_CHR4,CODD_CHR5");
+        $this->db->where('CODD_FLNM', 'KASX_TUJX');
+        $result = $this->db->get('th_codexd')->result();
+        $ret [''] = 'Pilih Kas Tujuan :';
+        if ($result) {
+
+            foreach ($result as $key => $row) {
+                $ret [$row->CODD_VALU] = $row->CODD_DESC; //.' - '.$row->kode_iuran;
             }
         }
 

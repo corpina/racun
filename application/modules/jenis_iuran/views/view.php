@@ -10,7 +10,7 @@
 <section class="panel panel-default">
     <header class="panel-heading">
         <div class="row">
-            <div class="col-md-8 col-xs-3">                
+            <div class="col-md-8">                
                 <?php
                 echo anchor(
                         site_url('jenis_iuran/add'), '<i class="glyphicon glyphicon-plus"></i>', 'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
@@ -18,7 +18,7 @@
                 ?>
 
             </div>
-            <div class="col-md-4 col-xs-9">
+            <div class="col-md-4">
 
                 <?php echo form_open(site_url('jenis_iuran/search'), 'role="search" class="form"'); ?>       
                 <div class="input-group pull-right">                      
@@ -43,15 +43,18 @@
                     <tr>
                         <th class="header">#</th>
 
-                        <th>CODD VALU</th>   
+                        <th>Kode Iuran</th>   
 
-                        <th>CODD DESC</th>   
+                        <th>Jenis Iuran</th>   
+                        <th>Kas Tujuan</th>   
 
 
 
-                        <th>CODD CHR4</th>   
+                        <th>Pendapatan</th>   
 
-                        <th>CODD CHR5</th>   
+                        <th>Piutan/Hutang</th>   
+                        <th>Terima Dimuka</th>   
+                        <th>Group Iuran</th>   
 
 
 
@@ -70,14 +73,17 @@
                                 ?> </td>
 
 
-                            <td><?php echo $jenis_iuran['CODD_VALU']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_iuran']; ?></td>
 
-                            <td><?php echo $jenis_iuran['CODD_DESC']; ?></td>
+                            <td><?php echo $jenis_iuran['nama_iuran']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_tujuan']; ?></td>
 
+                            <td><?php echo $jenis_iuran['kode_pendapatan']; ?></td>
 
-                            <td><?php echo $jenis_iuran['CODD_CHR4']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_piutang']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_diterima']; ?></td>
 
-                            <td><?php echo $jenis_iuran['CODD_CHR5']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_group']; ?></td>
 
 
 
@@ -87,13 +93,13 @@
 
                                 <?php
                                 echo anchor(
-                                        site_url('jenis_iuran/edit/' . $jenis_iuran['CODD_VALU']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
+                                        site_url('jenis_iuran/edit/' . $jenis_iuran['kode_iuran']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
                                 );
                                 ?>
 
                                 <?php
                                 echo anchor(
-                                        site_url('jenis_iuran/destroy/' . $jenis_iuran['CODD_VALU']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
+                                        site_url('jenis_iuran/destroy/' . $jenis_iuran['kode_iuran']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                 );
                                 ?>   
 

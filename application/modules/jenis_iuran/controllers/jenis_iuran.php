@@ -50,6 +50,8 @@ class jenis_iuran extends CI_Controller {
         $data['get_sekolah'] = $this->jenis_iurans->get_sekolah();
         $data['get_jenis_iuran'] = $this->jenis_iurans->get_jenis_iuran();
         $data['get_pendapatan'] = $this->jenis_iurans->get_pendapatan();
+        $data['get_kas_tujuan'] = $this->jenis_iurans->get_kas_tujuan();
+
         $data['get_piutang'] = $this->jenis_iurans->get_piutang();
         $data['get_terima_dimuka'] = $this->jenis_iurans->get_terima_dimuka();
 
@@ -67,9 +69,14 @@ class jenis_iuran extends CI_Controller {
 
             $data['jenis_iuran'] = $this->jenis_iurans->get_one($id);
             $data['action'] = 'jenis_iuran/save/' . $id;
+            $data['action'] = 'jenis_iuran/save';
+            $data['get_sekolah'] = $this->jenis_iurans->get_sekolah();
+            $data['get_jenis_iuran'] = $this->jenis_iurans->get_jenis_iuran();
+            $data['get_pendapatan'] = $this->jenis_iurans->get_pendapatan();
+            $data['get_kas_tujuan'] = $this->jenis_iurans->get_kas_tujuan();
 
-
-
+            $data['get_piutang'] = $this->jenis_iurans->get_piutang();
+            $data['get_terima_dimuka'] = $this->jenis_iurans->get_terima_dimuka();
             $this->template->display('jenis_iuran/form', $data);
         } else {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan', 'info'));
