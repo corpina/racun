@@ -105,7 +105,7 @@
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_pendapatan', $get_pendapatan, set_value('kode_pendapatan', $jenis_iuran['kode_pendapatan']), 'class="form-control input-md " required  id="kode_pendapatan"'
+                            'kode_pendapatan', $get_pendapatan, set_value('kode_pendapatan', $jenis_iuran['kode_pendapatan']), 'class="form-control input-md "  id="kode_pendapatan"'
                     );
                     ?>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_piutan', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md " required  id="kode_piutang"'
+                            'kode_piutan', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md "  id="kode_piutang"'
                     );
                     ?>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md " required  id="kode_piutang"'
+                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md "  id="kode_piutang"'
                     );
                     ?>
                 </div>

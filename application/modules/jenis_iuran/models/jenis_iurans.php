@@ -26,7 +26,19 @@ class jenis_iurans extends CI_Model {
      */
     public function get_all($limit, $offset) {
 
-        $result = $this->db->get('jenis_iuran', $limit, $offset);
+        if ($offset == NULL) {
+            $offset = 0;
+        } else {
+            $offset = $offset;
+        }
+
+        //$result = $this->db->get('jenis_iuran', $limit, $offset);
+        $result = $this->db->query("            
+SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pendapatan INNER JOIN
+(SELECT  CODD_FLNM,CODD_VALU,CODD_DESC FROM th_codexd WHERE CODD_FLNM = 'KASX_TUJX') AS kt ON
+ kt.CODD_VALU = ji.kode_tujuan LIMIT $offset, $limit
+    ");
+
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -59,9 +71,10 @@ class jenis_iurans extends CI_Model {
     public function get_search($limit, $offset) {
         $keyword = $this->session->userdata('keyword');
 
-        $this->db->like('kode_unit', $keyword);
+//        var_dump($keyword);
+        //exit();
 
-        $this->db->like('type_iuran', $keyword);
+        $this->db->like('kode_unit', $keyword);
 
 
         $this->db->limit($limit, $offset);
@@ -106,7 +119,7 @@ class jenis_iurans extends CI_Model {
 
         //var_dump($id);
         //var_dump($result->num_rows());
-          //    exit();
+        //    exit();
         if ($result->num_rows() == 1) {
             return $result->row_array();
         } else {
@@ -158,10 +171,10 @@ class jenis_iurans extends CI_Model {
             $kode = "01";
         } else {
             if ($kd < 10) {
-                $dbwh_10 = (int)$kd + 1; 
-                $kode  ='0'.$dbwh_10;
+                $dbwh_10 = (int) $kd + 1;
+                $kode = '0' . $dbwh_10;
             } else {
-                $kode = (int)$kd + 1;
+                $kode = (int) $kd + 1;
             }
         }
 
@@ -221,7 +234,7 @@ class jenis_iurans extends CI_Model {
         );
 
 
-        $this->db->where('', $id);
+        $this->db->where('kode_iuran', $id);
         $this->db->update('jenis_iuran', $data);
     }
 
@@ -342,6 +355,10 @@ class jenis_iurans extends CI_Model {
         }
 
         return $ret;
+    }
+
+    public function get_unit_sekolah() {
+        return $this->db->get('unit_sekolah');
     }
 
 }

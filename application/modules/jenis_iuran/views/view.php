@@ -22,12 +22,19 @@
 
                 <?php echo form_open(site_url('jenis_iuran/search'), 'role="search" class="form"'); ?>       
                 <div class="input-group pull-right">                      
-                    <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> 
+                    <!--<input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> -->
+                    <select name="q" id="q" class="form-control input-sm">
+                        <option value=""> - Cari Unit Sekolah -</option>
+                        <?php foreach ($unit_sekolah->result() as $d):?>
+                        <option value="<?= $d->kode_unit?>"> <?= $d->nama_unit?> </option>>
+                        <?php endforeach;?>
+                    </select>
                     <span class="input-group-btn">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i> Cari</button>
                     </span>
                 </div>
 
+                    
                 </form> 
                 <?php echo form_close(); ?>
             </div>
@@ -44,14 +51,9 @@
                         <th class="header">#</th>
 
                         <th>Kode Iuran</th>   
-
                         <th>Jenis Iuran</th>   
                         <th>Kas Tujuan</th>   
-
-
-
                         <th>Pendapatan</th>   
-
                         <th>Piutan/Hutang</th>   
                         <th>Terima Dimuka</th>   
                         <th>Group Iuran</th>   
@@ -76,9 +78,9 @@
                             <td><?php echo $jenis_iuran['kode_iuran']; ?></td>
 
                             <td><?php echo $jenis_iuran['nama_iuran']; ?></td>
-                            <td><?php echo $jenis_iuran['kode_tujuan']; ?></td>
+                            <td><?php echo $jenis_iuran['CODD_DESC']; ?></td>
 
-                            <td><?php echo $jenis_iuran['kode_pendapatan']; ?></td>
+                            <td><?php echo $jenis_iuran['ACCT_NAMA']; ?></td>
 
                             <td><?php echo $jenis_iuran['kode_piutang']; ?></td>
                             <td><?php echo $jenis_iuran['kode_diterima']; ?></td>
