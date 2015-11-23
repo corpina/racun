@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * Controller master_iuran
- * @created on : Saturday, 31-Oct-2015 08:44:53
+ * Controller fa_unitxx
+ * @created on : Friday, 30-Oct-2015 15:23:22
  * @author Arief Manggala Putra <manggala.corp@gmail.com>
  * Copyright 2015
  *
@@ -10,25 +10,25 @@
  */
 
 
-class master_iuran extends CI_Controller
+class fa_unitxx extends CI_Controller
 {
 
     public function __construct() 
     {
         parent::__construct();         
-        $this->load->model('master_iurans');
+        $this->load->model('fa_unitxxs');
     }
     
 
     /**
-    * List all data master_iuran
+    * List all data fa_unitxx
     *
     */
     public function index() 
     {
         $config = array(
-            'base_url'          => site_url('master_iuran/index/'),
-            'total_rows'        => $this->master_iurans->count_all(),
+            'base_url'          => site_url('fa_unitxx/index/'),
+            'total_rows'        => $this->fa_unitxxs->count_all(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -37,34 +37,37 @@ class master_iuran extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Unit";
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = (int)$this->uri->segment(3) +1;
-        $data['master_iurans']       = $this->master_iurans->get_all($config['per_page'], $this->uri->segment(3));
-        $this->template->display('master_iuran/view',$data);
+        $data['fa_unitxxs']     = $this->fa_unitxxs->get_all($config['per_page'], $this->uri->segment(3));
+        $this->template->display('fa_unitxx/view',$data);
 	      
     }
 
     
 
     /**
-    * Call Form to Add  New master_iuran
+    * Call Form to Add  New fa_unitxx
     *
     */
     public function add() 
     {       
-        $data['master_iuran'] = $this->master_iurans->add();
-        $data['action']  = 'master_iuran/save';
+        $data['fa_unitxx'] = $this->fa_unitxxs->add();
+        $data['action']    = 'fa_unitxx/save';
      
-      
-        $this->template->display('master_iuran/form',$data);
+        $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
+        $data['title']     = "Unit";
+        
+        $this->template->display('fa_unitxx/form',$data);
 
     }
 
     
 
     /**
-    * Call Form to Modify master_iuran
+    * Call Form to Modify fa_unitxx
     *
     */
     public function edit($id='') 
@@ -72,24 +75,29 @@ class master_iuran extends CI_Controller
         if ($id != '') 
         {
 
-            $data['master_iuran']      = $this->master_iurans->get_one($id);
-            $data['action']       = 'master_iuran/save/' . $id;           
+            $data['fa_unitxx']      = $this->fa_unitxxs->get_one($id);
+			
+		//	var_dump($data['fa_unitxx']);
+			//exit();
+            $data['action']       = 'fa_unitxx/save/' . $id;           
       
-          
-            $this->template->display('master_iuran/form',$data);
+            $data['fa_lokxxx'] = $this->fa_unitxxs->get_fa_lokxxx();
+            $data['title']          = "Unit";
+            
+            $this->template->display('fa_unitxx/form',$data);
             
         }
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
-            redirect(site_url('master_iuran'));
+            redirect(site_url('fa_unitxx'));
         }
     }
 
 
     
     /**
-    * Save & Update data  master_iuran
+    * Save & Update data  fa_unitxx
     *
     */
     public function save($id =NULL) 
@@ -97,13 +105,30 @@ class master_iuran extends CI_Controller
         // validation config
         $config = array(
                   
+				  
+				  array(
+                        'field' => 'KODE_UNIT',
+                        'label' => 'KODE UNIT',
+                        'rules' => 'trim'
+                        ),
+				  
                     array(
-                        'field' => 'CODD_DESC',
-                        'label' => 'CODD DESC',
+                        'field' => 'NAMA_UNIT',
+                        'label' => 'NAMA UNIT',
                         'rules' => 'trim'
                         ),
                     
-                   
+                    array(
+                        'field' => 'KODE_LOKX',
+                        'label' => 'KODE LOKX',
+                        'rules' => 'trim'
+                        ),
+                    
+                    array(
+                        'field' => 'KETX_UNIT',
+                        'label' => 'KETX UNIT',
+                        'rules' => 'trim'
+                        ),
                                
                   );
             
@@ -117,9 +142,9 @@ class master_iuran extends CI_Controller
                       if ($this->input->post()) 
                       {
                           
-                          $this->master_iurans->save();
+                          $this->fa_unitxxs->save();
                           $this->session->set_flashdata('notif', notify('Data berhasil di simpan','success'));
-                          redirect('master_iuran');
+                          redirect('fa_unitxx');
                       }
                   } 
                   else // If validation incorrect 
@@ -135,9 +160,9 @@ class master_iuran extends CI_Controller
                 {
                     if ($this->input->post()) 
                     {
-                        $this->master_iurans->update($id);
+                        $this->fa_unitxxs->update($id);
                         $this->session->set_flashdata('notif', notify('Data berhasil di update','success'));
-                        redirect('master_iuran');
+                        redirect('fa_unitxx');
                     }
                 } 
                 else // If validation incorrect 
@@ -150,7 +175,7 @@ class master_iuran extends CI_Controller
     
     
     /**
-    * Detail master_iuran
+    * Detail fa_unitxx
     *
     */
     public function show($id='') 
@@ -158,20 +183,20 @@ class master_iuran extends CI_Controller
         if ($id != '') 
         {
 
-            $data['master_iuran'] = $this->master_iurans->get_one($id);            
-            $this->template->display('master_iuran/_show',$data);
+            $data['fa_unitxx'] = $this->fa_unitxxs->get_one($id);            
+            $this->template->display('fa_unitxx/_show',$data);
             
         }
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
-            redirect(site_url('master_iuran'));
+            redirect(site_url('fa_unitxx'));
         }
     }
     
     
     /**
-    * Search master_iuran like ""
+    * Search fa_unitxx like ""
     *
     */   
     public function search()
@@ -186,8 +211,8 @@ class master_iuran extends CI_Controller
         }
         
          $config = array(
-            'base_url'          => site_url('master_iuran/search/'),
-            'total_rows'        => $this->master_iurans->count_all_search(),
+            'base_url'          => site_url('fa_unitxx/search/'),
+            'total_rows'        => $this->fa_unitxxs->count_all_search(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -195,31 +220,32 @@ class master_iuran extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Unit";
         $data['total']          = $config['total_rows'];
         $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();
-        $data['master_iurans']       = $this->master_iurans->get_search($config['per_page'], $this->uri->segment(3));
+        $data['fa_unitxxs']       = $this->fa_unitxxs->get_search($config['per_page'], $this->uri->segment(3));
        
-        $this->template->display('master_iuran/view',$data);
+        $this->template->display('fa_unitxx/view',$data);
     }
     
     
     /**
-    * Delete master_iuran by ID
+    * Delete fa_unitxx by ID
     *
     */
     public function destroy($id) 
     {        
         if ($id) 
         {
-            $this->master_iurans->destroy($id);           
+            $this->fa_unitxxs->destroy($id);           
              $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
-             redirect('master_iuran');
+             redirect('fa_unitxx');
         } 
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','warning'));
-            redirect('master_iuran');
+            redirect('fa_unitxx');
         }       
     }
 

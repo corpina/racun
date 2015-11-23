@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * Controller master_iuran
+ * Controller th_codexd
  * @created on : Saturday, 31-Oct-2015 08:44:53
  * @author Arief Manggala Putra <manggala.corp@gmail.com>
  * Copyright 2015
@@ -10,25 +10,25 @@
  */
 
 
-class master_iuran extends CI_Controller
+class th_codexd extends CI_Controller
 {
 
     public function __construct() 
     {
         parent::__construct();         
-        $this->load->model('master_iurans');
+        $this->load->model('th_codexds');
     }
     
 
     /**
-    * List all data master_iuran
+    * List all data th_codexd
     *
     */
     public function index() 
     {
         $config = array(
-            'base_url'          => site_url('master_iuran/index/'),
-            'total_rows'        => $this->master_iurans->count_all(),
+            'base_url'          => site_url('th_codexd/index/'),
+            'total_rows'        => $this->th_codexds->count_all(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -40,31 +40,31 @@ class master_iuran extends CI_Controller
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = (int)$this->uri->segment(3) +1;
-        $data['master_iurans']       = $this->master_iurans->get_all($config['per_page'], $this->uri->segment(3));
-        $this->template->display('master_iuran/view',$data);
+        $data['th_codexds']       = $this->th_codexds->get_all($config['per_page'], $this->uri->segment(3));
+        $this->template->display('th_codexd/view',$data);
 	      
     }
 
     
 
     /**
-    * Call Form to Add  New master_iuran
+    * Call Form to Add  New th_codexd
     *
     */
     public function add() 
     {       
-        $data['master_iuran'] = $this->master_iurans->add();
-        $data['action']  = 'master_iuran/save';
+        $data['th_codexd'] = $this->th_codexds->add();
+        $data['action']  = 'th_codexd/save';
      
       
-        $this->template->display('master_iuran/form',$data);
+        $this->template->display('th_codexd/form',$data);
 
     }
 
     
 
     /**
-    * Call Form to Modify master_iuran
+    * Call Form to Modify th_codexd
     *
     */
     public function edit($id='') 
@@ -72,24 +72,24 @@ class master_iuran extends CI_Controller
         if ($id != '') 
         {
 
-            $data['master_iuran']      = $this->master_iurans->get_one($id);
-            $data['action']       = 'master_iuran/save/' . $id;           
+            $data['th_codexd']      = $this->th_codexds->get_one($id);
+            $data['action']       = 'th_codexd/save/' . $id;           
       
           
-            $this->template->display('master_iuran/form',$data);
+            $this->template->display('th_codexd/form',$data);
             
         }
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
-            redirect(site_url('master_iuran'));
+            redirect(site_url('th_codexd'));
         }
     }
 
 
     
     /**
-    * Save & Update data  master_iuran
+    * Save & Update data  th_codexd
     *
     */
     public function save($id =NULL) 
@@ -117,9 +117,9 @@ class master_iuran extends CI_Controller
                       if ($this->input->post()) 
                       {
                           
-                          $this->master_iurans->save();
+                          $this->th_codexds->save();
                           $this->session->set_flashdata('notif', notify('Data berhasil di simpan','success'));
-                          redirect('master_iuran');
+                          redirect('th_codexd');
                       }
                   } 
                   else // If validation incorrect 
@@ -135,9 +135,9 @@ class master_iuran extends CI_Controller
                 {
                     if ($this->input->post()) 
                     {
-                        $this->master_iurans->update($id);
+                        $this->th_codexds->update($id);
                         $this->session->set_flashdata('notif', notify('Data berhasil di update','success'));
-                        redirect('master_iuran');
+                        redirect('th_codexd');
                     }
                 } 
                 else // If validation incorrect 
@@ -150,7 +150,7 @@ class master_iuran extends CI_Controller
     
     
     /**
-    * Detail master_iuran
+    * Detail th_codexd
     *
     */
     public function show($id='') 
@@ -158,20 +158,20 @@ class master_iuran extends CI_Controller
         if ($id != '') 
         {
 
-            $data['master_iuran'] = $this->master_iurans->get_one($id);            
-            $this->template->display('master_iuran/_show',$data);
+            $data['th_codexd'] = $this->th_codexds->get_one($id);            
+            $this->template->display('th_codexd/_show',$data);
             
         }
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
-            redirect(site_url('master_iuran'));
+            redirect(site_url('th_codexd'));
         }
     }
     
     
     /**
-    * Search master_iuran like ""
+    * Search th_codexd like ""
     *
     */   
     public function search()
@@ -186,8 +186,8 @@ class master_iuran extends CI_Controller
         }
         
          $config = array(
-            'base_url'          => site_url('master_iuran/search/'),
-            'total_rows'        => $this->master_iurans->count_all_search(),
+            'base_url'          => site_url('th_codexd/search/'),
+            'total_rows'        => $this->th_codexds->count_all_search(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -198,28 +198,28 @@ class master_iuran extends CI_Controller
         $data['total']          = $config['total_rows'];
         $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();
-        $data['master_iurans']       = $this->master_iurans->get_search($config['per_page'], $this->uri->segment(3));
+        $data['th_codexds']       = $this->th_codexds->get_search($config['per_page'], $this->uri->segment(3));
        
-        $this->template->display('master_iuran/view',$data);
+        $this->template->display('th_codexd/view',$data);
     }
     
     
     /**
-    * Delete master_iuran by ID
+    * Delete th_codexd by ID
     *
     */
     public function destroy($id) 
     {        
         if ($id) 
         {
-            $this->master_iurans->destroy($id);           
+            $this->th_codexds->destroy($id);           
              $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
-             redirect('master_iuran');
+             redirect('th_codexd');
         } 
         else 
         {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan','warning'));
-            redirect('master_iuran');
+            redirect('th_codexd');
         }       
     }
 

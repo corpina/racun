@@ -90,7 +90,7 @@
                 </div> <!--/ KODE LOKX -->
 
                 <div class="form-group">
-                    <label for="keterangan" class="col-md-2 control-label">Keterangan<span class="required-input">*</span></label>
+                    <label for="keterangan" class="col-md-2 control-label">Keterangan</label>
                     <div class="col-md-6">
 
                         <?php
