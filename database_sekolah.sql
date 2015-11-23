@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2015 at 02:15 PM
+-- Generation Time: Nov 23, 2015 at 04:33 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -45,7 +45,9 @@ CREATE TABLE IF NOT EXISTS `jenis_iuran` (
 --
 
 INSERT INTO `jenis_iuran` (`kode_unit`, `type_iuran`, `kode_jenis_iuran`, `nama_iuran`, `kode_tujuan`, `kode_pendapatan`, `kode_piutang`, `kode_iuran`, `kode_diterima`, `delete_status`, `created_date`) VALUES
-('003', 'JNSX_IURN', '01', 'SPP Bulanan', '1', '4.111.2', '4.111.2', 2, '4.111.2', '', '0000-00-00 00:00:00');
+('003', 'JNSX_IURN', '01', 'SPP Bulanan', '1', '4.111.2', '4.111.2', 2, '4.111.2', '', '0000-00-00 00:00:00'),
+('002', 'JNSX_IURN', '02', 'jj', '1', '4.111.2', '4.112.2', 2, '1.29.02', '', '0000-00-00 00:00:00'),
+('002', 'JNSX_IURN', '03', 'llll', '1', '4.112.2', '4.115.2', 2, '1.29.08', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -79,14 +81,16 @@ INSERT INTO `lokasi_sekolah` (`kode_lokasi`, `nama_lokasi`, `alamat_lokasi`, `te
 CREATE TABLE IF NOT EXISTS `tabel_iuran` (
 `kode_iuran` int(11) NOT NULL,
   `nama_iuran` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tabel_iuran`
 --
 
 INSERT INTO `tabel_iuran` (`kode_iuran`, `nama_iuran`) VALUES
-(2, 'SPP');
+(2, 'SPP'),
+(3, 'bulanan'),
+(5, 'tahunan');
 
 -- --------------------------------------------------------
 
@@ -1195,7 +1199,7 @@ MODIFY `kode_lokasi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `tabel_iuran`
 --
 ALTER TABLE `tabel_iuran`
-MODIFY `kode_iuran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `kode_iuran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
