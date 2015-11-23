@@ -33,6 +33,7 @@ class jenis_iuran extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Jenis Iuran Siswa";
         $data['total'] = $config['total_rows'];
         $data['pagination'] = $this->pagination->create_links();
         $data['unit_sekolah'] = $this->jenis_iurans->get_unit_sekolah();
@@ -55,6 +56,7 @@ class jenis_iuran extends CI_Controller {
 
         $data['get_piutang'] = $this->jenis_iurans->get_piutang();
         $data['get_terima_dimuka'] = $this->jenis_iurans->get_terima_dimuka();
+        $data['title'] = "Jenis Iuran Siswa";
 
 
 
@@ -67,7 +69,7 @@ class jenis_iuran extends CI_Controller {
      */
     public function edit($id = '') {
         if ($id != '') {
-
+            $data['title'] = "Jenis Iuran Siswa";
             $data['jenis_iuran'] = $this->jenis_iurans->get_one($id);
             $data['action'] = 'jenis_iuran/save/' . $id;
             $data['get_sekolah'] = $this->jenis_iurans->get_sekolah();
@@ -140,6 +142,7 @@ class jenis_iuran extends CI_Controller {
         if ($id != '') {
 
             $data['jenis_iuran'] = $this->jenis_iurans->get_one($id);
+            $data['title'] = "Jenis Iuran Siswa";
             $this->template->display('jenis_iuran/_show', $data);
         } else {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan', 'info'));
@@ -170,6 +173,7 @@ class jenis_iuran extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Jenis Iuran Siswa";
         $data['total'] = $config['total_rows'];
         $data['unit_sekolah'] = $this->jenis_iurans->get_unit_sekolah();
 
