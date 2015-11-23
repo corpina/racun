@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-                <h2>Tabel Jenis Iuran</h2>
+                <h2>Tabel Jenis Iuran Siswa</h2>
 
             <div class="x_title">
                 <div class="row">
