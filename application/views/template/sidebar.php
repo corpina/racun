@@ -42,8 +42,8 @@
                                         </li>
                                         <li><a href="<?= base_url() ?>lokasi_sekolah"> Lokasi</a></li>
                                         <li><a href="<?= base_url() ?>unit_sekolah"> Unit</a></li>
-                                        <li><a href="<?= base_url() ?>tabel_kelas"> Pembuatan Kelas</a></li>
                                         <li><a href="<?= base_url() ?>jenjang_pend"> Pembuatan Jenjang </a></li>
+                                        <li><a href="<?= base_url() ?>tabel_kelas"> Pembuatan Kelas</a></li>
                                 </li>
                             </ul>
                             </li>
@@ -53,6 +53,7 @@
 
                                     <li><a href="<?= base_url() ?>master_iuran"> Master Iuran</a></li>
                                     <li><a href="<?= base_url() ?>jenis_iuran">Jenis Iuran Siswa</a></li>
+                                    <li><a href="<?= base_url() ?>jenis_iuran">Komponen Iuran Siswa</a></li>
 
                             </li>
                             </ul>
