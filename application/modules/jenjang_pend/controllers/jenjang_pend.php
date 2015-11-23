@@ -33,6 +33,7 @@ class jenjang_pend extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Jenjang Pendidikan";
         $data['total'] = $config['total_rows'];
         $data['pagination'] = $this->pagination->create_links();
         $data['number'] = (int) $this->uri->segment(3) + 1;
@@ -47,6 +48,7 @@ class jenjang_pend extends CI_Controller {
     public function add() {
         $data['jenjang_pend'] = $this->jenjang_pends->add();
         $data['action'] = 'jenjang_pend/save';
+        $data['title'] = "Jenjang Pendidikan";
 
 
         $this->template->display('jenjang_pend/form', $data);
@@ -61,6 +63,7 @@ class jenjang_pend extends CI_Controller {
 
             $data['jenjang_pend'] = $this->jenjang_pends->get_one($id);
             $data['action'] = 'jenjang_pend/save/' . $id;
+            $data['title'] = "Jenjang Pendidikan";
 
 
             $this->template->display('jenjang_pend/form', $data);
@@ -151,6 +154,7 @@ class jenjang_pend extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Jenjang Pendidikan";
         $data['total'] = $config['total_rows'];
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['pagination'] = $this->pagination->create_links();
