@@ -33,6 +33,7 @@ class jenjang_pend extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Pembuatan Jenjang";
         $data['total'] = $config['total_rows'];
         $data['pagination'] = $this->pagination->create_links();
         $data['number'] = (int) $this->uri->segment(3) + 1;
@@ -45,6 +46,7 @@ class jenjang_pend extends CI_Controller {
      *
      */
     public function add() {
+        $data['title'] = "Pembuatan Jenjang";
         $data['jenjang_pend'] = $this->jenjang_pends->add();
         $data['action'] = 'jenjang_pend/save';
 
@@ -59,6 +61,7 @@ class jenjang_pend extends CI_Controller {
     public function edit($id = '') {
         if ($id != '') {
 
+            $data['title'] = "Pembuatan Jenjang";
             $data['jenjang_pend'] = $this->jenjang_pends->get_one($id);
             $data['action'] = 'jenjang_pend/save/' . $id;
 
@@ -151,6 +154,7 @@ class jenjang_pend extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Pembuatan Jenjang";
         $data['total'] = $config['total_rows'];
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['pagination'] = $this->pagination->create_links();

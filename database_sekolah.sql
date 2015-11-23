@@ -12,7 +12,7 @@ MySQL - 5.6.24 : Database - database_sekolah
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`database_sekolah` /*!40100 DEFAULT CHARACTER SET latin1 */;
+/*CREATE DATABASE /*!32312 IF NOT EXISTS*`database_sekolah` /*!40100 DEFAULT CHARACTER SET latin1 */
 
 USE `database_sekolah`;
 
@@ -21,22 +21,22 @@ USE `database_sekolah`;
 DROP TABLE IF EXISTS `jenis_iuran`;
 
 CREATE TABLE `jenis_iuran` (
-  `kode_unit` varchar(4) DEFAULT NULL,
-  `type_iuran` varchar(15) DEFAULT NULL,
-  `kode_iuran` varchar(15) DEFAULT NULL,
-  `nama_iuran` varchar(40) DEFAULT NULL,
-  `kode_var` varchar(20) DEFAULT NULL,
-  `kode_pendapatan` varchar(20) DEFAULT NULL,
-  `kode_chr1` varchar(20) DEFAULT NULL,
-  `kode_piutang` varchar(20) DEFAULT NULL,
-  `kode_group` varchar(20) DEFAULT NULL,
-  `kode_chr4` varchar(20) DEFAULT NULL,
-  `kode_diterima` varchar(20) DEFAULT NULL,
-  `kode_dec1` double DEFAULT NULL,
-  `kode_dec2` double DEFAULT NULL,
-  `delete_status` varchar(1) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `kode_unit` VARCHAR(4) DEFAULT NULL,
+  `type_iuran` VARCHAR(15) DEFAULT NULL,
+  `kode_iuran` VARCHAR(15) DEFAULT NULL,
+  `nama_iuran` VARCHAR(40) DEFAULT NULL,
+  `kode_var` VARCHAR(20) DEFAULT NULL,
+  `kode_pendapatan` VARCHAR(20) DEFAULT NULL,
+  `kode_chr1` VARCHAR(20) DEFAULT NULL,
+  `kode_piutang` VARCHAR(20) DEFAULT NULL,
+  `kode_group` VARCHAR(20) DEFAULT NULL,
+  `kode_chr4` VARCHAR(20) DEFAULT NULL,
+  `kode_diterima` VARCHAR(20) DEFAULT NULL,
+  `kode_dec1` DOUBLE DEFAULT NULL,
+  `kode_dec2` DOUBLE DEFAULT NULL,
+  `delete_status` VARCHAR(1) DEFAULT NULL,
+  `created_date` DATETIME DEFAULT NULL
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `jenis_iuran` */
 
@@ -45,13 +45,14 @@ CREATE TABLE `jenis_iuran` (
 DROP TABLE IF EXISTS `lokasi_sekolah`;
 
 CREATE TABLE `lokasi_sekolah` (
-  `kode_lokasi` int(3) NOT NULL AUTO_INCREMENT,
-  `nama_lokasi` varchar(50) DEFAULT NULL,
-  `alamat_lokasi` varchar(100) DEFAULT NULL,
-  `telepon_lokasi` varchar(25) DEFAULT NULL,
-  `fax_lokasi` varchar(25) DEFAULT NULL,
+  `kode_lokasi` INT(3) NOT NULL AUTO_INCREMENT,
+  `nama_lokasi` VARCHAR(50) DEFAULT NULL,
+  `alamat_lokasi` VARCHAR(100) DEFAULT NULL,
+  `telepon_lokasi` VARCHAR(25) DEFAULT NULL,
+  `fax_lokasi` VARCHAR(25) DEFAULT NULL,
   PRIMARY KEY (`kode_lokasi`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 
 /*Data for the table `lokasi_sekolah` */
 
@@ -60,15 +61,15 @@ CREATE TABLE `lokasi_sekolah` (
 DROP TABLE IF EXISTS `tabel_kelas`;
 
 CREATE TABLE `tabel_kelas` (
-  `kode_unit` varchar(4) DEFAULT NULL,
-  `thn_ajar` varchar(8) NOT NULL DEFAULT '',
-  `kode_kelas` varchar(7) NOT NULL DEFAULT '',
-  `nama_kelas` varchar(50) DEFAULT NULL,
-  `tingkatan_kelas` varchar(3) NOT NULL DEFAULT '',
-  `jurusan_kelas` varchar(3) NOT NULL DEFAULT '',
-  `status_aktif` varchar(1) DEFAULT NULL,
+  `kode_unit` VARCHAR(4) DEFAULT NULL,
+  `thn_ajar` VARCHAR(8) NOT NULL DEFAULT '',
+  `kode_kelas` VARCHAR(7) NOT NULL DEFAULT '',
+  `nama_kelas` VARCHAR(50) DEFAULT NULL,
+  `tingkatan_kelas` VARCHAR(3) NOT NULL DEFAULT '',
+  `jurusan_kelas` VARCHAR(3) NOT NULL DEFAULT '',
+  `status_aktif` VARCHAR(1) DEFAULT NULL,
   PRIMARY KEY (`thn_ajar`,`kode_kelas`,`tingkatan_kelas`,`jurusan_kelas`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_kelas` */
 
@@ -77,18 +78,18 @@ CREATE TABLE `tabel_kelas` (
 DROP TABLE IF EXISTS `tahun_ajar`;
 
 CREATE TABLE `tahun_ajar` (
-  `kode_thn_ajar` varchar(15) NOT NULL DEFAULT '',
-  `thn_ajar` varchar(9) NOT NULL DEFAULT '',
-  `ket_thn_ajar` varchar(10) DEFAULT NULL,
-  `tgl_mulai` date DEFAULT NULL,
-  `tgl_akhir` date DEFAULT NULL,
-  `status_aktif` varchar(1) DEFAULT NULL,
-  `created_by` varchar(15) DEFAULT NULL,
-  `updated_by` varchar(15) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
+  `kode_thn_ajar` VARCHAR(15) NOT NULL DEFAULT '',
+  `thn_ajar` VARCHAR(9) NOT NULL DEFAULT '',
+  `ket_thn_ajar` VARCHAR(10) DEFAULT NULL,
+  `tgl_mulai` DATE DEFAULT NULL,
+  `tgl_akhir` DATE DEFAULT NULL,
+  `status_aktif` VARCHAR(1) DEFAULT NULL,
+  `created_by` VARCHAR(15) DEFAULT NULL,
+  `updated_by` VARCHAR(15) DEFAULT NULL,
+  `created_date` DATETIME DEFAULT NULL,
+  `update_date` DATETIME DEFAULT NULL,
   PRIMARY KEY (`kode_thn_ajar`,`thn_ajar`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `tahun_ajar` */
 
@@ -97,29 +98,29 @@ CREATE TABLE `tahun_ajar` (
 DROP TABLE IF EXISTS `tb_coaxxx`;
 
 CREATE TABLE `tb_coaxxx` (
-  `ACCT_CODE` varchar(20) NOT NULL,
-  `ACCT_NAMA` varchar(100) NOT NULL,
-  `STAT_ACTV` varchar(1) DEFAULT NULL,
-  `ACCT_PARN` varchar(20) DEFAULT NULL,
-  `ACCT_KATG` varchar(10) DEFAULT NULL,
-  `ACCT_TYPE` varchar(2) DEFAULT NULL,
-  `ACCT_CURR` varchar(3) DEFAULT NULL,
-  `ACCT_LEVL` int(4) DEFAULT NULL,
-  `ACCT_DKXX` varchar(1) DEFAULT NULL,
-  `OPTX_SUBT` varchar(1) DEFAULT NULL,
-  `OPTX_BUGD` varchar(1) DEFAULT NULL,
-  `OPTX_COST` varchar(1) DEFAULT NULL,
-  `COST_CODE` varchar(20) DEFAULT NULL,
-  `KODEBI` varchar(3) DEFAULT NULL,
-  `CRTX_BYXX` varchar(15) DEFAULT NULL,
-  `UPDT_BYXX` varchar(15) DEFAULT NULL,
-  `CRTX_DATE` datetime DEFAULT NULL,
-  `UPDT_DATE` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ACCT_CODE` VARCHAR(20) NOT NULL,
+  `ACCT_NAMA` VARCHAR(100) NOT NULL,
+  `STAT_ACTV` VARCHAR(1) DEFAULT NULL,
+  `ACCT_PARN` VARCHAR(20) DEFAULT NULL,
+  `ACCT_KATG` VARCHAR(10) DEFAULT NULL,
+  `ACCT_TYPE` VARCHAR(2) DEFAULT NULL,
+  `ACCT_CURR` VARCHAR(3) DEFAULT NULL,
+  `ACCT_LEVL` INT(4) DEFAULT NULL,
+  `ACCT_DKXX` VARCHAR(1) DEFAULT NULL,
+  `OPTX_SUBT` VARCHAR(1) DEFAULT NULL,
+  `OPTX_BUGD` VARCHAR(1) DEFAULT NULL,
+  `OPTX_COST` VARCHAR(1) DEFAULT NULL,
+  `COST_CODE` VARCHAR(20) DEFAULT NULL,
+  `KODEBI` VARCHAR(3) DEFAULT NULL,
+  `CRTX_BYXX` VARCHAR(15) DEFAULT NULL,
+  `UPDT_BYXX` VARCHAR(15) DEFAULT NULL,
+  `CRTX_DATE` DATETIME DEFAULT NULL,
+  `UPDT_DATE` DATETIME DEFAULT NULL
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_coaxxx` */
 
-insert  into `tb_coaxxx`(`ACCT_CODE`,`ACCT_NAMA`,`STAT_ACTV`,`ACCT_PARN`,`ACCT_KATG`,`ACCT_TYPE`,`ACCT_CURR`,`ACCT_LEVL`,`ACCT_DKXX`,`OPTX_SUBT`,`OPTX_BUGD`,`OPTX_COST`,`COST_CODE`,`KODEBI`,`CRTX_BYXX`,`UPDT_BYXX`,`CRTX_DATE`,`UPDT_DATE`) values 
+INSERT  INTO `tb_coaxxx`(`ACCT_CODE`,`ACCT_NAMA`,`STAT_ACTV`,`ACCT_PARN`,`ACCT_KATG`,`ACCT_TYPE`,`ACCT_CURR`,`ACCT_LEVL`,`ACCT_DKXX`,`OPTX_SUBT`,`OPTX_BUGD`,`OPTX_COST`,`COST_CODE`,`KODEBI`,`CRTX_BYXX`,`UPDT_BYXX`,`CRTX_DATE`,`UPDT_DATE`) VALUES 
 ('1','AKTIVA','1','00000000000','A','01','IDR',1,'D',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 ('1.1','AKTIVA LANCAR','1','1','A','01','IDR',2,'D',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 ('1.11','KAS','1','1.1','A','01','IDR',3,'D',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
@@ -1017,30 +1018,30 @@ insert  into `tb_coaxxx`(`ACCT_CODE`,`ACCT_NAMA`,`STAT_ACTV`,`ACCT_PARN`,`ACCT_K
 DROP TABLE IF EXISTS `th_codexd`;
 
 CREATE TABLE `th_codexd` (
-  `CODD_FLNM` varchar(15) NOT NULL DEFAULT '',
-  `CODD_VALU` varchar(15) NOT NULL DEFAULT '',
-  `CODD_DESC` varchar(40) DEFAULT NULL,
-  `CODD_VARC` varchar(20) DEFAULT NULL,
-  `CODD_VAR1` varchar(20) DEFAULT NULL,
-  `CODD_DECI` double DEFAULT NULL,
-  `CODD_CHR1` varchar(20) DEFAULT NULL,
-  `CODD_CHR2` varchar(20) DEFAULT NULL,
-  `CODD_CHR3` varchar(20) DEFAULT NULL,
-  `CODD_CHR4` varchar(20) DEFAULT NULL,
-  `CODD_CHR5` varchar(20) DEFAULT NULL,
-  `CODD_DEC1` double DEFAULT NULL,
-  `CODD_DEC2` double DEFAULT NULL,
-  `DELE_STAT` varchar(1) DEFAULT NULL,
-  `TRAN_DATE` datetime DEFAULT NULL,
-  `TRAN_USID` varchar(10) DEFAULT NULL,
-  `TRAN_TYPE` varchar(1) DEFAULT NULL,
-  `TRAN_COMP` varchar(10) DEFAULT NULL,
+  `CODD_FLNM` VARCHAR(15) NOT NULL DEFAULT '',
+  `CODD_VALU` VARCHAR(15) NOT NULL DEFAULT '',
+  `CODD_DESC` VARCHAR(40) DEFAULT NULL,
+  `CODD_VARC` VARCHAR(20) DEFAULT NULL,
+  `CODD_VAR1` VARCHAR(20) DEFAULT NULL,
+  `CODD_DECI` DOUBLE DEFAULT NULL,
+  `CODD_CHR1` VARCHAR(20) DEFAULT NULL,
+  `CODD_CHR2` VARCHAR(20) DEFAULT NULL,
+  `CODD_CHR3` VARCHAR(20) DEFAULT NULL,
+  `CODD_CHR4` VARCHAR(20) DEFAULT NULL,
+  `CODD_CHR5` VARCHAR(20) DEFAULT NULL,
+  `CODD_DEC1` DOUBLE DEFAULT NULL,
+  `CODD_DEC2` DOUBLE DEFAULT NULL,
+  `DELE_STAT` VARCHAR(1) DEFAULT NULL,
+  `TRAN_DATE` DATETIME DEFAULT NULL,
+  `TRAN_USID` VARCHAR(10) DEFAULT NULL,
+  `TRAN_TYPE` VARCHAR(1) DEFAULT NULL,
+  `TRAN_COMP` VARCHAR(10) DEFAULT NULL,
   PRIMARY KEY (`CODD_FLNM`,`CODD_VALU`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `th_codexd` */
 
-insert  into `th_codexd`(`CODD_FLNM`,`CODD_VALU`,`CODD_DESC`,`CODD_VARC`,`CODD_VAR1`,`CODD_DECI`,`CODD_CHR1`,`CODD_CHR2`,`CODD_CHR3`,`CODD_CHR4`,`CODD_CHR5`,`CODD_DEC1`,`CODD_DEC2`,`DELE_STAT`,`TRAN_DATE`,`TRAN_USID`,`TRAN_TYPE`,`TRAN_COMP`) values 
+INSERT  INTO `th_codexd`(`CODD_FLNM`,`CODD_VALU`,`CODD_DESC`,`CODD_VARC`,`CODD_VAR1`,`CODD_DECI`,`CODD_CHR1`,`CODD_CHR2`,`CODD_CHR3`,`CODD_CHR4`,`CODD_CHR5`,`CODD_DEC1`,`CODD_DEC2`,`DELE_STAT`,`TRAN_DATE`,`TRAN_USID`,`TRAN_TYPE`,`TRAN_COMP`) VALUES 
 ('ADTN_PART','1','Addition','a','',0,'','',NULL,NULL,NULL,0,0,'','2003-07-16 10:38:27','000028','A','PT-OMILT1G'),
 ('ADTN_PART','2','Reduction','b','',0,'','',NULL,NULL,NULL,0,0,'','2003-07-16 10:38:27','000028','A','PT-OMILT1G'),
 ('APLY_SEQ1','1','First','','',1,'','',NULL,NULL,NULL,0,0,'','2003-06-25 10:33:54','999999','A','HANBITX'),
@@ -2460,12 +2461,12 @@ insert  into `th_codexd`(`CODD_FLNM`,`CODD_VALU`,`CODD_DESC`,`CODD_VARC`,`CODD_V
 DROP TABLE IF EXISTS `unit_sekolah`;
 
 CREATE TABLE `unit_sekolah` (
-  `kode_unit` varchar(4) NOT NULL,
-  `nama_unit` varchar(50) DEFAULT NULL,
-  `kode_lokasi` varchar(3) DEFAULT NULL,
-  `keterangan` varchar(100) DEFAULT NULL,
+  `kode_unit` VARCHAR(4) NOT NULL,
+  `nama_unit` VARCHAR(50) DEFAULT NULL,
+  `kode_lokasi` VARCHAR(3) DEFAULT NULL,
+  `keterangan` VARCHAR(100) DEFAULT NULL,
   PRIMARY KEY (`kode_unit`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM DEFAULT CHARSET=latin1;
 
 /*Data for the table `unit_sekolah` */
 

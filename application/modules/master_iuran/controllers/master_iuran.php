@@ -37,6 +37,7 @@ class master_iuran extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Master Ujian";
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = (int)$this->uri->segment(3) +1;
@@ -53,8 +54,9 @@ class master_iuran extends CI_Controller
     */
     public function add() 
     {       
+        $data['title']        = "Master Ujian";
         $data['master_iuran'] = $this->master_iurans->add();
-        $data['action']  = 'master_iuran/save';
+        $data['action']       = 'master_iuran/save';
      
       
         $this->template->display('master_iuran/form',$data);
@@ -72,8 +74,9 @@ class master_iuran extends CI_Controller
         if ($id != '') 
         {
 
-            $data['master_iuran']      = $this->master_iurans->get_one($id);
-            $data['action']       = 'master_iuran/save/' . $id;           
+            $data['title']          = "Master Ujian";
+            $data['master_iuran']   = $this->master_iurans->get_one($id);
+            $data['action']         = 'master_iuran/save/' . $id;           
       
           
             $this->template->display('master_iuran/form',$data);
@@ -195,6 +198,7 @@ class master_iuran extends CI_Controller
         );
         
         $this->pagination->initialize($config);
+        $data['title']          = "Master Ujian";
         $data['total']          = $config['total_rows'];
         $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();
