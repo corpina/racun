@@ -190,7 +190,7 @@ class tahun_ajars extends CI_Model {
      *
      */
     public function destroy($id) {
-        $this->db->where('tahun_ajar', $id);
+        $this->db->where('thn_ajar', $id);
         $this->db->delete('tahun_ajar');
     }
 
