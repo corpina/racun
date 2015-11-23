@@ -11,12 +11,13 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+            <h2>Tabel Tahun Ajar </h2>
+
             <div class="x_title">
-                <h2>Tabel Tahun Ajar </h2>
 
 
                 <div class="row">
-                    <div class="col-md-6 col-xs-3">                
+                    <div class="col-md-8 col-xs-3">                
                         <?php
                         echo anchor(
                                 site_url('tahun_ajar/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
@@ -38,7 +39,7 @@
                         <?php echo form_close(); ?>
                     </div>
                 </div>
-               
+
             </div>
 
             <div class="x_content">

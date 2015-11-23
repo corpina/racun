@@ -12,13 +12,13 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+                <h2>Pembuatan Kelas</h2>
 
             <div class="x_title">
-                <h2>Pembuatan Kelas</h2>
 
                 <div class="row">
                     <!-- button tambah -->
-                    <div class="col-md-6 col-xs-3">
+                    <div class="col-md-8 col-xs-3">
                         <?php
                         echo anchor(
                                 site_url('tabel_kelas/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip"'
@@ -66,10 +66,10 @@
                                 <tr>
                                     <td><?php echo $number++; ?></td>
 
-                                    <td><?php echo $tabel_kelas['keterangan']; ?></td>
+                                    <td><?php echo $tabel_kelas['thn_ajar']; ?></td>
                                     <td><?php echo $tabel_kelas['kode_kelas']; ?></td>
                                     <td><?php echo $tabel_kelas['nama_kelas']; ?></td>
-                                    <td><?php echo $tabel_kelas['tingkatan_kelas']; ?></td>
+                                    <td><?php echo $tabel_kelas['nama_jenjang']; ?></td>
                                     <td><?php echo $tabel_kelas['kode_unit']; ?></td>
                                     <td><?php echo $tabel_kelas['nama_unit']; ?></td>
 

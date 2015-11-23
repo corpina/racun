@@ -7,16 +7,23 @@
     </div>
 </div><!-- /.row -->
 
-<!-- content -->
+
+
+
+
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+
+            <!-- content -->
+            <h2>Tabel Lokasi </h2>
+
             <div class="x_title">
-                <h2>Tabel Lokasi </h2>
+
 
                 <div class="row">
                     <!-- button tambah -->
-                    <div  class="col-md-6 col-xs-3">
+                    <div  class="col-md-8">
                         <?php
                         echo anchor(
                                 site_url('lokasi_sekolah/add'), '<i class="glyphicon glyphicon-plus"></i> Tambah Data', 'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
@@ -25,7 +32,7 @@
                     </div>
 
                     <!-- form search -->
-                    <div class="col-md-4 col-xs-9">
+                    <div class="col-md-4">
 
 
                         <?php echo form_open(site_url('lokasi_sekolah/search'), 'role="search" class="form"'); ?>       

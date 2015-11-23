@@ -7,7 +7,7 @@
     </div>
 </div><!-- /.row -->
 
-<?php echo form_open(site_url('jenis_iuran/' . $action), 'role="form" class="form-horizontal" id="form_jenis_iuran" parsley-validate'); ?>               
+<?php echo form_open(site_url($action), 'role="form" class="form-horizontal" id="form_jenis_iuran" parsley-validate'); ?>               
 <div class="panel panel-default">
     <div class="panel-heading"><i class="glyphicon glyphicon-signal"></i> </div>
 
@@ -18,18 +18,18 @@
         <div class="col-sm-6">                                   
 
             <div class="form-group">
-                <label for="CODD_FLNM" class="col-sm-4 control-label">Kode Iuran</label>
+                <label  class="col-sm-4 control-label">Kode Iuran</label>
                 <div class="col-sm-6">                                   
                     <?php
                     echo form_input(
                             array(
-                        'name' => 'kode_iuran',
-                        'id' => 'kode_iuran',
+                        'name' => 'kode_jenis_iuran',
+                        'id' => 'kode_jenis_iuran',
                         'class' => 'form-control input-sm ',
                         'placeholder' => 'Kode Iuran Otomatis',
                         'maxlength' => '15',
                         'readonly' => 'readonly'
-                            ), set_value('kode_iuran', $jenis_iuran['kode_iuran'])
+                            ), set_value('kode_jenis_iuran', $jenis_iuran['kode_jenis_iuran'])
                     );
                     ?>
                 </div>
@@ -37,7 +37,7 @@
 
 
             <div class="form-group">
-                <label for="KODE_LOKX" class="col-md-4 control-label"> Unit Sekolah</label>
+                <label  class="col-md-4 control-label"> Unit Sekolah</label>
                 <div class="col-md-6">                                   
                     <?php
                     echo form_dropdown(
@@ -50,7 +50,7 @@
 
 
             <div class="form-group">
-                <label for="CODD_FLNM" class="col-sm-4 control-label">Jenis Iuran</label>
+                <label  class="col-sm-4 control-label">Jenis Iuran</label>
                 <div class="col-sm-6">                                   
                     <?php
                     echo form_input(
@@ -62,21 +62,25 @@
                         'maxlength' => '15'
                             ), set_value('nama_iuran', $jenis_iuran['nama_iuran'])
                     );
+                    
+                  
                     ?>
+                    
                 </div>
             </div> <!--/ CODD FLNM -->
 
 
             <div class="form-group">
-                <label for="KODE_LOKX" class="col-md-4 control-label"> Group Iuran</label>
+                <label  class="col-md-4 control-label"> Group Iuran</label>
                 <div class="col-md-6">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_group', $get_jenis_iuran, set_value('kode_group', $jenis_iuran['kode_group']), 'class="form-control input-md " required  id="kode_group"'
+                            'kode_iuran', $get_jenis_iuran, set_value('kode_iuran', $jenis_iuran['kode_iuran']), 'class="form-control input-md " required  id="kode_iuran"'
                     );
                     ?>
                 </div>
             </div> <!--/ KODE LOKX -->  
+
 
         </div>
 
@@ -84,36 +88,46 @@
         <div class="col-sm-5">                                   
 
 
-
-
             <div class="form-group">
-                <label for="KODE_LOKX" class="col-md-4 control-label"> Pendapatan</label>
+                <label  class="col-md-4 control-label"> Kas Tujuan</label>
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_pendapatan', $get_pendapatan, set_value('kode_pendapatan', $jenis_iuran['kode_pendapatan']), 'class="form-control input-md " required  id="kode_pendapatan"'
+                            'kode_tujuan', $get_kas_tujuan, set_value('kode_tujuan', $jenis_iuran['kode_tujuan']), 'class="form-control input-md " required  id="kode_tujuan"'
+                    );
+                    ?>
+                </div>
+            </div> <!--/ KODE LOKX -->
+
+
+            <div class="form-group">
+                <label  class="col-md-4 control-label"> Pendapatan</label>
+                <div class="col-md-7">                                   
+                    <?php
+                    echo form_dropdown(
+                            'kode_pendapatan', $get_pendapatan, set_value('kode_pendapatan', $jenis_iuran['kode_pendapatan']), 'class="form-control input-md "  id="kode_pendapatan"'
                     );
                     ?>
                 </div>
             </div> <!--/ KODE LOKX -->
 
             <div class="form-group">
-                <label for="KODE_LOKX" class="col-md-4 control-label"> Piutang</label>
+                <label  class="col-md-4 control-label"> Piutang</label>
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_piutan', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md " required  id="kode_piutang"'
+                            'kode_piutang', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md "  id="kode_piutang"'
                     );
                     ?>
                 </div>
             </div> <!--/ KODE LOKX -->
 
             <div class="form-group">
-                <label for="KODE_LOKX" class="col-md-4 control-label"> Terima Dimuka</label>
+                <label  class="col-md-4 control-label"> Terima Dimuka</label>
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md " required  id="kode_piutang"'
+                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md "  id="kode_diterima"'
                     );
                     ?>
                 </div>

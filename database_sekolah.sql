@@ -21,6 +21,7 @@ USE `database_sekolah`;
 DROP TABLE IF EXISTS `jenis_iuran`;
 
 CREATE TABLE `jenis_iuran` (
+<<<<<<< HEAD
   `kode_unit` VARCHAR(4) DEFAULT NULL,
   `type_iuran` VARCHAR(15) DEFAULT NULL,
   `kode_iuran` VARCHAR(15) DEFAULT NULL,
@@ -37,14 +38,36 @@ CREATE TABLE `jenis_iuran` (
   `delete_status` VARCHAR(1) DEFAULT NULL,
   `created_date` DATETIME DEFAULT NULL
 ) ENGINE=MYISAM DEFAULT CHARSET=latin1;
+=======
+  `kode_unit` varchar(4) DEFAULT NULL,
+  `type_iuran` varchar(15) DEFAULT NULL,
+  `kode_jenis_iuran` varchar(15) DEFAULT NULL,
+  `nama_iuran` varchar(40) DEFAULT NULL,
+  `kode_tujuan` varchar(20) DEFAULT NULL,
+  `kode_pendapatan` varchar(20) DEFAULT NULL,
+  `kode_piutang` varchar(20) DEFAULT NULL,
+  `kode_iuran` int(11) DEFAULT NULL,
+  `kode_diterima` varchar(20) DEFAULT NULL,
+  `delete_status` varchar(1) DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  KEY `kode_unit` (`kode_unit`,`kode_iuran`),
+  KEY `kode_iuran` (`kode_iuran`),
+  CONSTRAINT `jenis_iuran_ibfk_1` FOREIGN KEY (`kode_unit`) REFERENCES `unit_sekolah` (`kode_unit`),
+  CONSTRAINT `jenis_iuran_ibfk_2` FOREIGN KEY (`kode_iuran`) REFERENCES `tabel_iuran` (`kode_iuran`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 
 /*Data for the table `jenis_iuran` */
+
+insert  into `jenis_iuran`(`kode_unit`,`type_iuran`,`kode_jenis_iuran`,`nama_iuran`,`kode_tujuan`,`kode_pendapatan`,`kode_piutang`,`kode_iuran`,`kode_diterima`,`delete_status`,`created_date`) values 
+('003','JNSX_IURN','01','SPP Bulanan','1','4.111.2','4.111.2',2,'4.111.2','','0000-00-00 00:00:00');
 
 /*Table structure for table `lokasi_sekolah` */
 
 DROP TABLE IF EXISTS `lokasi_sekolah`;
 
 CREATE TABLE `lokasi_sekolah` (
+<<<<<<< HEAD
   `kode_lokasi` INT(3) NOT NULL AUTO_INCREMENT,
   `nama_lokasi` VARCHAR(50) DEFAULT NULL,
   `alamat_lokasi` VARCHAR(100) DEFAULT NULL,
@@ -53,14 +76,59 @@ CREATE TABLE `lokasi_sekolah` (
   PRIMARY KEY (`kode_lokasi`)
 ) ENGINE=MYISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
+=======
+  `kode_lokasi` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_lokasi` varchar(50) DEFAULT NULL,
+  `alamat_lokasi` varchar(100) DEFAULT NULL,
+  `telepon_lokasi` varchar(25) DEFAULT NULL,
+  `fax_lokasi` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`kode_lokasi`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 
 /*Data for the table `lokasi_sekolah` */
+
+insert  into `lokasi_sekolah`(`kode_lokasi`,`nama_lokasi`,`alamat_lokasi`,`telepon_lokasi`,`fax_lokasi`) values 
+(3,'YaYasan Al muhsinin','bekasi pejuang jaya 2122','93242','92424');
+
+/*Table structure for table `tabel_iuran` */
+
+DROP TABLE IF EXISTS `tabel_iuran`;
+
+CREATE TABLE `tabel_iuran` (
+  `kode_iuran` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_iuran` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`kode_iuran`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tabel_iuran` */
+
+insert  into `tabel_iuran`(`kode_iuran`,`nama_iuran`) values 
+(2,'SPP');
+
+/*Table structure for table `tabel_jenjang` */
+
+DROP TABLE IF EXISTS `tabel_jenjang`;
+
+CREATE TABLE `tabel_jenjang` (
+  `kode_jenjang` int(20) NOT NULL AUTO_INCREMENT,
+  `nama_jenjang` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`kode_jenjang`),
+  KEY `kode_jenjang` (`kode_jenjang`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tabel_jenjang` */
+
+insert  into `tabel_jenjang`(`kode_jenjang`,`nama_jenjang`) values 
+(2,'Kelas 1'),
+(3,'Kelas 2');
 
 /*Table structure for table `tabel_kelas` */
 
 DROP TABLE IF EXISTS `tabel_kelas`;
 
 CREATE TABLE `tabel_kelas` (
+<<<<<<< HEAD
   `kode_unit` VARCHAR(4) DEFAULT NULL,
   `thn_ajar` VARCHAR(8) NOT NULL DEFAULT '',
   `kode_kelas` VARCHAR(7) NOT NULL DEFAULT '',
@@ -70,8 +138,45 @@ CREATE TABLE `tabel_kelas` (
   `status_aktif` VARCHAR(1) DEFAULT NULL,
   PRIMARY KEY (`thn_ajar`,`kode_kelas`,`tingkatan_kelas`,`jurusan_kelas`)
 ) ENGINE=MYISAM DEFAULT CHARSET=latin1;
+=======
+  `kode_unit` varchar(4) DEFAULT NULL,
+  `thn_ajar` varchar(8) NOT NULL DEFAULT '',
+  `kode_kelas` varchar(7) NOT NULL DEFAULT '',
+  `nama_kelas` varchar(50) DEFAULT NULL,
+  `kode_jenjang` int(20) NOT NULL,
+  `jurusan_kelas` varchar(3) NOT NULL DEFAULT '',
+  `status_aktif` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`thn_ajar`,`kode_kelas`,`kode_jenjang`,`jurusan_kelas`),
+  KEY `kode_unit` (`kode_unit`),
+  KEY `kode_unit_2` (`kode_unit`),
+  KEY `kode_kelas` (`kode_kelas`),
+  KEY `kode_jenjang` (`kode_jenjang`),
+  KEY `jurusan_kelas` (`jurusan_kelas`),
+  KEY `kode_jenjang_2` (`kode_jenjang`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 
 /*Data for the table `tabel_kelas` */
+
+insert  into `tabel_kelas`(`kode_unit`,`thn_ajar`,`kode_kelas`,`nama_kelas`,`kode_jenjang`,`jurusan_kelas`,`status_aktif`) values 
+('003','1516','200','kelas 1a',2,'','');
+
+/*Table structure for table `tabel_umum` */
+
+DROP TABLE IF EXISTS `tabel_umum`;
+
+CREATE TABLE `tabel_umum` (
+  `kode_umum` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) DEFAULT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`kode_umum`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tabel_umum` */
+
+insert  into `tabel_umum`(`kode_umum`,`type`,`nama`) values 
+(1,'kas_tujuan','yayasan'),
+(2,'kas_tujuan','sekolah');
 
 /*Table structure for table `tahun_ajar` */
 
@@ -89,9 +194,16 @@ CREATE TABLE `tahun_ajar` (
   `created_date` DATETIME DEFAULT NULL,
   `update_date` DATETIME DEFAULT NULL,
   PRIMARY KEY (`kode_thn_ajar`,`thn_ajar`)
+<<<<<<< HEAD
 ) ENGINE=MYISAM DEFAULT CHARSET=latin1;
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 
 /*Data for the table `tahun_ajar` */
+
+insert  into `tahun_ajar`(`kode_thn_ajar`,`thn_ajar`,`ket_thn_ajar`,`tgl_mulai`,`tgl_akhir`,`status_aktif`,`created_by`,`updated_by`,`created_date`,`update_date`) values 
+('01','1516','2015/2016','2015-07-01','2016-06-30',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tb_coaxxx` */
 
@@ -1013,6 +1125,7 @@ INSERT  INTO `tb_coaxxx`(`ACCT_CODE`,`ACCT_NAMA`,`STAT_ACTV`,`ACCT_PARN`,`ACCT_K
 ('4.19.0904','Disp. Formulir SMP Unggulan','1','4.19.09','P','02','IDR',4,'K','0','0','0','',NULL,'',NULL,'2015-08-05 12:11:40','2015-08-05 12:11:40'),
 ('4.19.1004','Disp. Formulir SLTA Unggulan','1','4.19.10','P','02','IDR',4,'K','0','0','0','',NULL,'',NULL,'2015-08-05 12:12:10','2015-08-05 12:12:10');
 
+<<<<<<< HEAD
 /*Table structure for table `th_codexd` */
 
 DROP TABLE IF EXISTS `th_codexd`;
@@ -2456,19 +2569,35 @@ INSERT  INTO `th_codexd`(`CODD_FLNM`,`CODD_VALU`,`CODD_DESC`,`CODD_VARC`,`CODD_V
 ('KODE_LEVL','17','KELAS ABCD',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 ('KODE_LEVL','18','Kelas 90',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
+=======
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 /*Table structure for table `unit_sekolah` */
 
 DROP TABLE IF EXISTS `unit_sekolah`;
 
 CREATE TABLE `unit_sekolah` (
+<<<<<<< HEAD
   `kode_unit` VARCHAR(4) NOT NULL,
   `nama_unit` VARCHAR(50) DEFAULT NULL,
   `kode_lokasi` VARCHAR(3) DEFAULT NULL,
   `keterangan` VARCHAR(100) DEFAULT NULL,
   PRIMARY KEY (`kode_unit`)
 ) ENGINE=MYISAM DEFAULT CHARSET=latin1;
+=======
+  `kode_unit` varchar(4) NOT NULL,
+  `nama_unit` varchar(50) DEFAULT NULL,
+  `kode_lokasi` varchar(3) DEFAULT NULL,
+  `keterangan` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kode_unit`),
+  KEY `kode_unit` (`kode_unit`),
+  KEY `kode_unit_2` (`kode_unit`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
 
 /*Data for the table `unit_sekolah` */
+
+insert  into `unit_sekolah`(`kode_unit`,`nama_unit`,`kode_lokasi`,`keterangan`) values 
+('003','SD RIANG GEMBIRA','3','sekolah luar biasa');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

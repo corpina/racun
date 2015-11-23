@@ -98,7 +98,85 @@
                     <?php echo $pagination; ?>
                 </div>
             </div>
+<<<<<<< HEAD
 
         </div><!-- end x_panel -->
+=======
+        </div>
+    </header>
+
+
+    <div class="panel-body">
+        <?php if ($jenjang_pends) : ?>
+            <table class="table table-hover table-condensed">
+
+                <thead>
+                    <tr>
+
+                        <th> Kode Jenjang</th>   
+                        <th> Nama Jenjang</th>   
+
+
+
+                        <th class="red header" align="right" width="120">Aksi</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    <?php foreach ($jenjang_pends as $jenjang_pend) : ?>
+                        <tr>	               
+                            <td><?php echo $jenjang_pend['kode_jenjang']; ?></td>
+                            <td><?php echo $jenjang_pend['nama_jenjang']; ?></td>
+
+
+
+
+                            <td>    
+
+                                <!--
+                                <?php
+                                echo anchor(
+                                        site_url('jenjang_pend/show/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-eye-open"></i>', 'class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="Detail"'
+                                );
+                                ?>
+                                -->
+                                <?php
+                                echo anchor(
+                                        site_url('jenjang_pend/edit/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
+                                );
+                                ?>
+
+                                <?php
+                                echo anchor(
+                                        site_url('jenjang_pend/destroy/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
+                                );
+                                ?>   
+
+                            </td>
+                        </tr>     
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <?php echo notify('Data jenjang_pend belum tersedia', 'info'); ?>
+        <?php endif; ?>
+    </div>
+
+
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-3">
+                Th Codexd
+                <span class="label label-info">
+                    <?php echo $total; ?>
+                </span>
+            </div>  
+            <div class="col-md-9">
+                <?php echo $pagination; ?>
+            </div>
+        </div>
+>>>>>>> ff206b72a2808c37fb559573cbbc2ea23f1b4b34
     </div>
 </div> <!-- end row -->

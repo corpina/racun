@@ -35,6 +35,7 @@ class jenis_iuran extends CI_Controller {
         $this->pagination->initialize($config);
         $data['total'] = $config['total_rows'];
         $data['pagination'] = $this->pagination->create_links();
+        $data['unit_sekolah'] = $this->jenis_iurans->get_unit_sekolah();
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['jenis_iurans'] = $this->jenis_iurans->get_all($config['per_page'], $this->uri->segment(3));
         $this->template->display('jenis_iuran/view', $data);
@@ -50,6 +51,8 @@ class jenis_iuran extends CI_Controller {
         $data['get_sekolah'] = $this->jenis_iurans->get_sekolah();
         $data['get_jenis_iuran'] = $this->jenis_iurans->get_jenis_iuran();
         $data['get_pendapatan'] = $this->jenis_iurans->get_pendapatan();
+        $data['get_kas_tujuan'] = $this->jenis_iurans->get_kas_tujuan();
+
         $data['get_piutang'] = $this->jenis_iurans->get_piutang();
         $data['get_terima_dimuka'] = $this->jenis_iurans->get_terima_dimuka();
 
@@ -67,9 +70,13 @@ class jenis_iuran extends CI_Controller {
 
             $data['jenis_iuran'] = $this->jenis_iurans->get_one($id);
             $data['action'] = 'jenis_iuran/save/' . $id;
+            $data['get_sekolah'] = $this->jenis_iurans->get_sekolah();
+            $data['get_jenis_iuran'] = $this->jenis_iurans->get_jenis_iuran();
+            $data['get_pendapatan'] = $this->jenis_iurans->get_pendapatan();
+            $data['get_kas_tujuan'] = $this->jenis_iurans->get_kas_tujuan();
 
-
-
+            $data['get_piutang'] = $this->jenis_iurans->get_piutang();
+            $data['get_terima_dimuka'] = $this->jenis_iurans->get_terima_dimuka();
             $this->template->display('jenis_iuran/form', $data);
         } else {
             $this->session->set_flashdata('notif', notify('Data tidak ditemukan', 'info'));
@@ -164,6 +171,8 @@ class jenis_iuran extends CI_Controller {
 
         $this->pagination->initialize($config);
         $data['total'] = $config['total_rows'];
+        $data['unit_sekolah'] = $this->jenis_iurans->get_unit_sekolah();
+
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['pagination'] = $this->pagination->create_links();
         $data['jenis_iurans'] = $this->jenis_iurans->get_search($config['per_page'], $this->uri->segment(3));
