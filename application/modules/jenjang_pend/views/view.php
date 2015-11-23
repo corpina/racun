@@ -88,7 +88,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    Unit Sekolah
+                    Jenjang Pendidikan
                     <span class="label label-info">
                         <?php echo $total; ?>
                     </span>
