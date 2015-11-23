@@ -47,7 +47,7 @@
             <div class="col-sm-6">                                   
                 <?php
                 echo form_dropdown(
-                        'tingkatan_kelas', $get_fa_kelas, set_value('tingkatan_kelas', $tabel_kelas['tingkatan_kelas']), 'class="form-control input-md " required  id="tingkatan_kelas"'
+                        'kode_jenjang', $get_fa_kelas, set_value('kode_jenjang', $tabel_kelas['kode_jenjang']), 'class="form-control input-md " required  id="kode_jenjang"'
                 );
                                 ?>
             </div>

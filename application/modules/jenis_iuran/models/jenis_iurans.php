@@ -32,12 +32,12 @@ class jenis_iurans extends CI_Model {
             $offset = $offset;
         }
 
-        //$result = $this->db->get('jenis_iuran', $limit, $offset);
-        $result = $this->db->query("            
-SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pendapatan INNER JOIN
-(SELECT  CODD_FLNM,CODD_VALU,CODD_DESC FROM th_codexd WHERE CODD_FLNM = 'KASX_TUJX') AS kt ON
- kt.CODD_VALU = ji.kode_tujuan LIMIT $offset, $limit
-    ");
+        $result = $this->db->get('jenis_iuran', $limit, $offset);
+//        $result = $this->db->query("            
+//SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pendapatan INNER JOIN
+//(SELECT  CODD_FLNM,CODD_VALU,CODD_DESC FROM th_codexd WHERE CODD_FLNM = 'KASX_TUJX') AS kt ON
+// kt.CODD_VALU = ji.kode_tujuan LIMIT $offset, $limit
+//    ");
 
 
         if ($result->num_rows() > 0) {
@@ -71,14 +71,13 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
     public function get_search($limit, $offset) {
         $keyword = $this->session->userdata('keyword');
 
-//        var_dump($keyword);
-        //exit();
-
         $this->db->like('kode_unit', $keyword);
-
-
         $this->db->limit($limit, $offset);
         $result = $this->db->get('jenis_iuran');
+        
+        /// var_dump($keyword);
+//        var_dump($result->result);
+//        exit();
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -114,7 +113,7 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
      *
      */
     public function get_one($id) {
-        $this->db->where('kode_iuran', $id);
+        $this->db->where('kode_jenis_iuran', $id);
         $result = $this->db->get('jenis_iuran');
 
         //var_dump($id);
@@ -136,13 +135,13 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
         $data = array(
             'kode_unit' => '',
             'type_iuran' => '',
-            'kode_iuran' => '',
+            'kode_jenis_iuran' => '',
             'nama_iuran' => '',
             'kode_tujuan' => '',
             'kode_pendapatan' => '',
             'kode_chr1' => '',
             'kode_piutang' => '',
-            'kode_group' => '',
+            'kode_iuran' => '',
             'kode_chr4' => '',
             'kode_diterima' => '',
             'kode_dec1' => '',
@@ -162,9 +161,9 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
      */
     public function save() {
 
-        $kode_iuran = $this->db->query('select max(kode_iuran) as kode_iuran from jenis_iuran ')->row();
+        $kode_jenis_iuran = $this->db->query('select max(kode_jenis_iuran) as kode_jenis_iuran from jenis_iuran ')->row();
 
-        $kd = $kode_iuran->kode_iuran;
+        $kd = $kode_jenis_iuran->kode_jenis_iuran;
 
         $kode = "";
         if ($kd == NULL) {
@@ -185,17 +184,14 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
         $data = array(
             'kode_unit' => strip_tags($this->input->post('kode_unit', TRUE)),
             'type_iuran' => 'JNSX_IURN', // strip_tags($this->input->post('type_iuran', TRUE)),
-            'kode_iuran' => $kode,
+            'kode_jenis_iuran' => $kode,
             'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
             'kode_tujuan' => strip_tags($this->input->post('kode_tujuan', TRUE)),
             'kode_pendapatan' => strip_tags($this->input->post('kode_pendapatan', TRUE)),
-            'kode_chr1' => strip_tags($this->input->post('kode_chr1', TRUE)),
             'kode_piutang' => strip_tags($this->input->post('kode_piutang', TRUE)),
-            'kode_group' => strip_tags($this->input->post('kode_group', TRUE)),
-            'kode_chr4' => strip_tags($this->input->post('kode_chr4', TRUE)),
+            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
             'kode_diterima' => strip_tags($this->input->post('kode_diterima', TRUE)),
-            'kode_dec1' => strip_tags($this->input->post('kode_dec1', TRUE)),
-            'kode_dec2' => strip_tags($this->input->post('kode_dec2', TRUE)),
+            
             'delete_status' => strip_tags($this->input->post('delete_status', TRUE)),
             'created_date' => strip_tags($this->input->post('created_date', TRUE)),
         );
@@ -218,23 +214,19 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
         $data = array(
             'kode_unit' => strip_tags($this->input->post('kode_unit', TRUE)),
             'type_iuran' => 'JNSX_IURN',
-            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
+            'kode_jenis_iuran' => strip_tags($this->input->post('kode_jenis_iuran', TRUE)),
             'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
             'kode_tujuan' => strip_tags($this->input->post('kode_tujuan', TRUE)),
             'kode_pendapatan' => strip_tags($this->input->post('kode_pendapatan', TRUE)),
-            'kode_chr1' => strip_tags($this->input->post('kode_chr1', TRUE)),
             'kode_piutang' => strip_tags($this->input->post('kode_piutang', TRUE)),
-            'kode_group' => strip_tags($this->input->post('kode_group', TRUE)),
-            'kode_chr4' => strip_tags($this->input->post('kode_chr4', TRUE)),
+            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
             'kode_diterima' => strip_tags($this->input->post('kode_diterima', TRUE)),
-            'kode_dec1' => strip_tags($this->input->post('kode_dec1', TRUE)),
-            'kode_dec2' => strip_tags($this->input->post('kode_dec2', TRUE)),
             'delete_status' => strip_tags($this->input->post('delete_status', TRUE)),
             'created_date' => strip_tags($this->input->post('created_date', TRUE)),
         );
 
 
-        $this->db->where('kode_iuran', $id);
+        $this->db->where('kode_jenis_iuran', $id);
         $this->db->update('jenis_iuran', $data);
     }
 
@@ -247,7 +239,7 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
      *
      */
     public function destroy($id) {
-        $this->db->where('kode_iuran', $id);
+        $this->db->where('kode_jenis_iuran', $id);
         $this->db->delete('jenis_iuran');
     }
 
@@ -271,15 +263,12 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
     // get jenis iuran diambil dari master_iuran
     public function get_jenis_iuran() {
 
-
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC,CODD_VARC,CODD_VAR1,CODD_CHR1,CODD_CHR2,CODD_CHR3,CODD_CHR4,CODD_CHR5");
-        $this->db->where('CODD_FLNM', 'JNSX_IURN');
-        $result = $this->db->get('th_codexd')->result();
+        $result = $this->db->get('tabel_iuran')->result();
         $ret [''] = 'Pilih Jenis Iuran :';
         if ($result) {
 
             foreach ($result as $key => $row) {
-                $ret [$row->CODD_VALU] = $row->CODD_DESC; //.' - '.$row->kode_iuran;
+                $ret [$row->kode_iuran] = $row->nama_iuran; //.' - '.$row->kode_jenis_iuran;
             }
         }
 
@@ -289,7 +278,7 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
     public function get_pendapatan() {
 
         $this->db->select('ACCT_CODE,ACCT_NAMA');
-        $this->db->where('acct_type', '02');
+        $this->db->where('ACCT_TYPE', '02');
         $this->db->order_by('ACCT_NAMA', 'asc');
         $result = $this->db->get('tb_coaxxx')->result();
 
@@ -307,7 +296,7 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
     public function get_piutang() {
 
         $this->db->select('ACCT_CODE,ACCT_NAMA');
-        $this->db->where('acct_type', '02');
+        $this->db->where('ACCT_TYPE', '02');
         $this->db->order_by('ACCT_NAMA', 'asc');
         $result = $this->db->get('tb_coaxxx')->result();
 
@@ -343,14 +332,14 @@ SELECT * FROM jenis_iuran ji LEFT JOIN tb_coaxxx tc ON tc.ACCT_CODE = ji.kode_pe
     public function get_kas_tujuan() {
 
 
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC,CODD_VARC,CODD_VAR1,CODD_CHR1,CODD_CHR2,CODD_CHR3,CODD_CHR4,CODD_CHR5");
-        $this->db->where('CODD_FLNM', 'KASX_TUJX');
-        $result = $this->db->get('th_codexd')->result();
+        $this->db->select("*");
+        $this->db->where('type', 'kas_tujuan');
+        $result = $this->db->get('tabel_umum')->result();
         $ret [''] = 'Pilih Kas Tujuan :';
         if ($result) {
 
             foreach ($result as $key => $row) {
-                $ret [$row->CODD_VALU] = $row->CODD_DESC; //.' - '.$row->kode_iuran;
+                $ret [$row->kode_umum] = $row->nama; //.' - '.$row->kode_jenis_iuran;
             }
         }
 

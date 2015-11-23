@@ -23,13 +23,13 @@
                     <?php
                     echo form_input(
                             array(
-                        'name' => 'kode_iuran',
-                        'id' => 'kode_iuran',
+                        'name' => 'kode_jenis_iuran',
+                        'id' => 'kode_jenis_iuran',
                         'class' => 'form-control input-sm ',
                         'placeholder' => 'Kode Iuran Otomatis',
                         'maxlength' => '15',
                         'readonly' => 'readonly'
-                            ), set_value('kode_iuran', $jenis_iuran['kode_iuran'])
+                            ), set_value('kode_jenis_iuran', $jenis_iuran['kode_jenis_iuran'])
                     );
                     ?>
                 </div>
@@ -75,7 +75,7 @@
                 <div class="col-md-6">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_group', $get_jenis_iuran, set_value('kode_group', $jenis_iuran['kode_group']), 'class="form-control input-md " required  id="kode_group"'
+                            'kode_iuran', $get_jenis_iuran, set_value('kode_iuran', $jenis_iuran['kode_iuran']), 'class="form-control input-md " required  id="kode_iuran"'
                     );
                     ?>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_piutan', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md "  id="kode_piutang"'
+                            'kode_piutang', $get_piutang, set_value('kode_piutang', $jenis_iuran['kode_piutang']), 'class="form-control input-md "  id="kode_piutang"'
                     );
                     ?>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="col-md-7">                                   
                     <?php
                     echo form_dropdown(
-                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md "  id="kode_piutang"'
+                            'kode_diterima', $get_terima_dimuka, set_value('kode_diterima', $jenis_iuran['kode_diterima']), 'class="form-control input-md "  id="kode_diterima"'
                     );
                     ?>
                 </div>

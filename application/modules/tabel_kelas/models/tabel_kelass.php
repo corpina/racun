@@ -32,6 +32,8 @@ class tabel_kelass extends CI_Model {
         $this->db->from('tabel_kelas tm');
         $this->db->join('tahun_ajar td', 'tm.thn_ajar=td.thn_ajar');
         $this->db->join('unit_sekolah fu', 'fu.kode_unit=tm.kode_unit');
+        $this->db->join('tabel_jenjang tj', 'tj.kode_jenjang=tm.kode_jenjang');
+
         $this->db->limit($limit, $offset);
         $result = $this->db->get();
         if ($result->num_rows() > 0) {
@@ -70,13 +72,11 @@ class tabel_kelass extends CI_Model {
         $this->db->from('tabel_kelas tm');
         $this->db->join('tahun_ajar td', 'tm.tahun_ajar=td.tahun_ajar');
         $this->db->join('unit_sekolah fu', 'fu.kode_unit=tm.kode_unit');
+        $this->db->join('tabel_jenjang tj', 'tj.kode_jenjang=tm.kode_jenjang');
         $this->db->like('nama_kelas', $keyword);
         $this->db->limit($limit, $offset);
         $result = $this->db->get();
 
-        //$this->db->like('nama_kelas', $keyword);
-        //$this->db->limit($limit, $offset);
-        //$result = $this->db->get('tabel_kelas');
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -118,6 +118,7 @@ class tabel_kelass extends CI_Model {
         $this->db->from('tabel_kelas tm');
         $this->db->join('tahun_ajar td', 'tm.thn_Ajar=td.thn_ajar');
         $this->db->join('unit_sekolah fu', 'fu.kode_unit=tm.kode_unit');
+        $this->db->join('tabel_jenjang tj', 'tj.kode_jenjang=tm.kode_jenjang');
         $this->db->where('kode_kelas', $id);
         $result = $this->db->get();
 
@@ -145,7 +146,7 @@ class tabel_kelass extends CI_Model {
             'status_aktif' => '',
             'tahun_ajar' => '',
             'thn_ajar' => '',
-            'tingkatan_kelas' => '',
+            'kode_jenjang' => '',
         );
 
         return $data;
@@ -158,14 +159,9 @@ class tabel_kelass extends CI_Model {
      *
      */
     public function save() {
-        $kode = $this->input->post('tingkatan_kelas', TRUE);
+        $kode = $this->input->post('kode_jenjang', TRUE);
         $thn = $this->input->post('thn_ajar', TRUE);
-        $query = $this->db->query("SELECT * FROM tabel_kelas WHERE tingkatan_kelas='$kode' AND thn_ajar ='$thn' order by kode_kelas DESC")->row();
-//        
-//        var_dump($query);
-//        var_dump($thn);
-//        var_dump($kode);
-//        exit();
+        $query = $this->db->query("SELECT * FROM tabel_kelas WHERE kode_jenjang='$kode' AND thn_ajar ='$thn' order by kode_kelas DESC")->row();
 
         $kode_kelas = $query->kode_kelas;
         $kd = "";
@@ -182,7 +178,7 @@ class tabel_kelass extends CI_Model {
             'thn_ajar' => strip_tags($this->input->post('thn_ajar', TRUE)),
             'kode_kelas' => $kd,
             'nama_kelas' => strip_tags($this->input->post('nama_kelas', TRUE)),
-            'tingkatan_kelas' => strip_tags($this->input->post('tingkatan_kelas', TRUE)),
+            'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
         );
         $this->db->insert('tabel_kelas', $data);
     }
@@ -201,7 +197,8 @@ class tabel_kelass extends CI_Model {
             'thn_ajar' => strip_tags($this->input->post('thn_ajar', TRUE)),
             'kode_kelas' => $id,
             'nama_kelas' => strip_tags($this->input->post('nama_kelas', TRUE)),
-            'status_aktif' => strip_tags($this->input->post('status_aktif', TRUE)),
+            'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
+            //'status_aktif' => strip_tags($this->input->post('status_aktif', TRUE)),
         );
 
 
@@ -258,16 +255,13 @@ class tabel_kelass extends CI_Model {
     // get tahun_ajar
     public function get_fa_kelas() {
 
-        //$result = $this->db->get('unit_sekolah')->result();
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-        $this->db->where('CODD_FLNM', 'KODE_LEVL');
-        $result = $this->db->get('th_codexd')->result();
+        $result = $this->db->get('tabel_jenjang')->result();
 
         $ret [''] = 'Pilih Tingkatan Kelas :';
         if ($result) {
 
             foreach ($result as $key => $row) {
-                $ret [$row->CODD_VALU] = $row->CODD_DESC;
+                $ret [$row->kode_jenjang] = $row->nama_jenjang;
             }
         }
 

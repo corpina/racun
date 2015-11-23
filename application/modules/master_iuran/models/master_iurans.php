@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Description of th_codexd
+ * Description of tabel_iuran
  * @created on : Saturday, 31-Oct-2015 08:44:53
  * @author Arief Manggala Putra <manggala.corp@gmail.com>
  * Copyright 2015    
@@ -16,7 +16,7 @@ class master_iurans extends CI_Model {
     }
 
     /**
-     *  Get All data th_codexd
+     *  Get All data tabel_iuran
      *
      *  @param limit  : Integer
      *  @param offset : Integer
@@ -26,10 +26,7 @@ class master_iurans extends CI_Model {
      */
     public function get_all($limit, $offset) {
 
-        //4result = $this->db->get('th_codexd', $limit, $offset);
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC,CODD_VARC,CODD_VAR1,CODD_CHR1,CODD_CHR2,CODD_CHR3,CODD_CHR4,CODD_CHR5");
-        $this->db->where('CODD_FLNM', 'JNSX_IURN');
-        $result = $this->db->get('th_codexd', $limit, $offset);
+        $result = $this->db->get('tabel_iuran', $limit, $offset);
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -39,29 +36,18 @@ class master_iurans extends CI_Model {
     }
 
     /**
-     *  Count All th_codexd
+     *  Count All tabel_iuran
      *    
      *  @return Integer
      *
      */
     public function count_all() {
-
-
-        //$result = $this->db->get('th_codexd', $limit, $offset);
-        /* $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-          $this->db->where('CODD_FLNM','JNSX_IURN');
-          $this->db->get('th_codexd');
-          return $this->db->count_all_results();
-         */
-
-        $this->db->from('th_codexd');
-        $this->db->where('CODD_FLNM', 'JNSX_IURN');
-
+        $this->db->from('tabel_iuran');
         return $this->db->count_all_results();
     }
 
     /**
-     * Search All th_codexd
+     * Search All tabel_iuran
      *
      *  @param limit   : Integer
      *  @param offset  : Integer
@@ -73,13 +59,11 @@ class master_iurans extends CI_Model {
     public function get_search($limit, $offset) {
         $keyword = $this->session->userdata('keyword');
 
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-        $this->db->where('CODD_FLNM', 'JNSX_IURN');
-        $this->db->like('CODD_FLNM', $keyword);
-        $this->db->or_like('CODD_VALU', $keyword);
-        $this->db->or_like('CODD_DESC', $keyword);
+        $this->db->select("*");
+        $this->db->where('nama_iuran');
+        $this->db->like('nama_iuran', $keyword);
         $this->db->limit($limit, $offset);
-        $result = $this->db->get('th_codexd');
+        $result = $this->db->get('tabel_iuran');
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -89,7 +73,7 @@ class master_iurans extends CI_Model {
     }
 
     /**
-     * Search All th_codexd
+     * Search All tabel_iuran
      * @param keyword : mixed
      *
      * @return Integer
@@ -97,18 +81,14 @@ class master_iurans extends CI_Model {
      */
     public function count_all_search() {
         $keyword = $this->session->userdata('keyword');
-        $this->db->from('th_codexd');
+        $this->db->from('tabel_iuran');
+        $this->db->like('nama_iuran', $keyword);
 
-        $this->db->like('CODD_FLNM', $keyword);
-
-        $this->db->or_like('CODD_VALU', $keyword);
-
-        $this->db->or_like('CODD_DESC', $keyword);
         return $this->db->count_all_results();
     }
 
     /**
-     *  Get One th_codexd
+     *  Get One tabel_iuran
      *
      *  @param id : Integer
      *
@@ -116,12 +96,10 @@ class master_iurans extends CI_Model {
      *
      */
     public function get_one($id) {
-        $this->db->where('CODD_VALU', $id);
-		$this->db->where('CODD_FLNM',"JNSX_IURN");
-        $result = $this->db->get('th_codexd');
+        $this->db->where('kode_iuran', $id);
+        $result = $this->db->get('tabel_iuran');
 
-	//	var_dump($result->row_array());
-		//exit();
+
         if ($result->num_rows() == 1) {
             return $result->row_array();
         } else {
@@ -130,15 +108,15 @@ class master_iurans extends CI_Model {
     }
 
     /**
-     *  Default form data th_codexd
+     *  Default form data tabel_iuran
      *  @return array
      *
      */
     public function add() {
         $data = array(
-            'CODD_DESC' => '',
-            'CODD_FLNM' => '',
-            'CODD_VALU' => '',
+            'kode_iuran' => '',
+            'nama_iuran' => '',
+            
         );
 
         return $data;
@@ -152,36 +130,14 @@ class master_iurans extends CI_Model {
      */
     public function save() {
 
-        $query = $this->db->query("select CODD_FLNM,CODD_VALU,CODD_DESC from th_codexd where CODD_FLNM ='JNSX_IURN' ORDER BY CODD_VALU DESC")->row();
 
-        $kode = $query->CODD_VALU;
-        
-        //var_dump($kode);
-        //exit();
-
-
-        $kode_val = "";
-        if ($kode == "") {
-            $kode_val = "00";
-        } else {
-            if ($kode < 10) {
-                $kode_val = '0' . (int) $kode + 1;
-            } else {
-                $kode_val = (int) $kode + 1;
-            }
-        }
-        //var_dump($kode);
-        //		var_dump($kode_val);
-//var_dump($this->input->post('CODD_DESC', TRUE));
-        //	exit();
 
         $data = array(
-            'CODD_DESC' => strip_tags($this->input->post('CODD_DESC', TRUE)),
-            'CODD_FLNM' => 'JNSX_IURN',
-            'CODD_VALU' => $kode_val,
+            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
+            'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
         );
 
-        $this->db->insert('th_codexd', $data);
+        $this->db->insert('tabel_iuran', $data);
     }
 
     /**
@@ -193,15 +149,14 @@ class master_iurans extends CI_Model {
      *
      */
     public function update($id) {
-        $data = array(
-            //'CODD_DESC' => strip_tags($this->input->post('CODD_DESC', TRUE)),
-            'CODD_FLNM' => strip_tags($this->input->post('CODD_FLNM', TRUE)),
-            'CODD_VALU' => strip_tags($this->input->post('CODD_FLNM', TRUE)),
+         $data = array(
+            'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
+            'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
         );
 
 
-        $this->db->where('CODD_VALU', $id);
-        $this->db->update('th_codexd', $data);
+        $this->db->where('kode_iuran', $id);
+        $this->db->update('tabel_iuran', $data);
     }
 
     /**
@@ -213,8 +168,8 @@ class master_iurans extends CI_Model {
      *
      */
     public function destroy($id) {
-        $this->db->where('CODD_VALU', $id);
-        $this->db->delete('th_codexd');
+        $this->db->where('kode_iuran', $id);
+        $this->db->delete('tabel_iuran');
     }
 
 }

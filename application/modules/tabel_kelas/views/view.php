@@ -66,10 +66,10 @@
                                 <tr>
                                     <td><?php echo $number++; ?></td>
 
-                                    <td><?php echo $tabel_kelas['keterangan']; ?></td>
+                                    <td><?php echo $tabel_kelas['thn_ajar']; ?></td>
                                     <td><?php echo $tabel_kelas['kode_kelas']; ?></td>
                                     <td><?php echo $tabel_kelas['nama_kelas']; ?></td>
-                                    <td><?php echo $tabel_kelas['tingkatan_kelas']; ?></td>
+                                    <td><?php echo $tabel_kelas['nama_jenjang']; ?></td>
                                     <td><?php echo $tabel_kelas['kode_unit']; ?></td>
                                     <td><?php echo $tabel_kelas['nama_unit']; ?></td>
 

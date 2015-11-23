@@ -15,41 +15,41 @@
 
 
         <div class="form-group">
-            <label for="CODD_DESC" class="col-md-2 control-label">Kode Tingkatan</label>
+            <label for="nama_jenjang" class="col-md-2 control-label">Kode Tingkatan</label>
             <div class="col-md-6">                                   
                 <?php
                 echo form_input(
                         array(
-                    'name' => 'CODD_VALU',
-                    'id' => 'CODD_VALU',
+                    'name' => 'kode_jenjang',
+                    'id' => 'kode_jenjang',
                     'class' => 'form-control input-md ',
                     'placeholder' => 'Kode Tingkatan Otomatis',
                     'maxlength' => '40',
                     'readonly' => TRUE
-                        ), set_value('CODD_VALU', $jenjang_pend['CODD_VALU'])
+                        ), set_value('kode_jenjang', $jenjang_pend['kode_jenjang'])
                 );
                 ?>
-                <?php echo form_error('CODD_DESC'); ?>
+                <?php echo form_error('nama_jenjang'); ?>
             </div>
         </div> <!--/ CODD DESC -->
 
 
 
         <div class="form-group">
-            <label for="CODD_DESC" class="col-md-2 control-label">Nama Tingkatan</label>
+            <label for="nama_jenjang" class="col-md-2 control-label">Nama Tingkatan</label>
             <div class="col-md-6">                                   
                 <?php
                 echo form_input(
                         array(
-                    'name' => 'CODD_DESC',
-                    'id' => 'CODD_DESC',
+                    'name' => 'nama_jenjang',
+                    'id' => 'nama_jenjang',
                     'class' => 'form-control input-md ',
                     'placeholder' => 'Nama Tingkatan',
                     'maxlength' => '40'
-                        ), set_value('CODD_DESC', $jenjang_pend['CODD_DESC'])
+                        ), set_value('nama_jenjang', $jenjang_pend['nama_jenjang'])
                 );
                 ?>
-                <?php echo form_error('CODD_VALU'); ?>
+                <?php echo form_error('kode_jenjang'); ?>
             </div>
         </div> <!--/ Nama tingkatan-->
 

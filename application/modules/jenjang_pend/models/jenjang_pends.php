@@ -27,9 +27,7 @@ class jenjang_pends extends CI_Model {
     public function get_all($limit, $offset) {
 
         //4result = $this->db->get('jenjang_pend', $limit, $offset);
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-        $this->db->where('CODD_FLNM', 'KODE_LEVL');
-        $result = $this->db->get('th_codexd', $limit, $offset);
+        $result = $this->db->get('tabel_jenjang', $limit, $offset);
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -46,17 +44,7 @@ class jenjang_pends extends CI_Model {
      */
     public function count_all() {
 
-
-        //$result = $this->db->get('jenjang_pend', $limit, $offset);
-        /* $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-          $this->db->where('CODD_FLNM','KODE_LEVL');
-          $this->db->get('jenjang_pend');
-          return $this->db->count_all_results();
-         */
-
-        $this->db->from('th_codexd');
-        $this->db->where('CODD_FLNM', 'KODE_LEVL');
-
+        $this->db->from('tabel_jenjang');
         return $this->db->count_all_results();
     }
 
@@ -73,13 +61,11 @@ class jenjang_pends extends CI_Model {
     public function get_search($limit, $offset) {
         $keyword = $this->session->userdata('keyword');
 
-        $this->db->select("CODD_FLNM,CODD_VALU,CODD_DESC");
-        $this->db->where('CODD_FLNM', 'KODE_LEVL');
-        $this->db->like('CODD_FLNM', $keyword);
-        $this->db->or_like('CODD_VALU', $keyword);
-        $this->db->or_like('CODD_DESC', $keyword);
+        $this->db->select("*");
+        $this->db->where('nama_jenjang');
+        $this->db->like('nama_jenjang', $keyword);
         $this->db->limit($limit, $offset);
-        $result = $this->db->get('th_codexd');
+        $result = $this->db->get('tabel_jenjang');
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -97,13 +83,9 @@ class jenjang_pends extends CI_Model {
      */
     public function count_all_search() {
         $keyword = $this->session->userdata('keyword');
-        $this->db->from('th_codexd');
-
-        $this->db->like('CODD_FLNM', $keyword);
-
-        $this->db->or_like('CODD_VALU', $keyword);
-
-        $this->db->or_like('CODD_DESC', $keyword);
+        $this->db->from('tabel_jenjang');
+        $this->db->like('nama_jenjang', $keyword);
+       
         return $this->db->count_all_results();
     }
 
@@ -116,9 +98,8 @@ class jenjang_pends extends CI_Model {
      *
      */
     public function get_one($id) {
-        $this->db->where('CODD_VALU', $id);
-		$this->db->where('CODD_FLNM', "KODE_LEVL");
-        $result = $this->db->get('th_codexd');
+        $this->db->where('kode_jenjang', $id);
+        $result = $this->db->get('tabel_jenjang');
 
         if ($result->num_rows() == 1) {
             return $result->row_array();
@@ -134,9 +115,9 @@ class jenjang_pends extends CI_Model {
      */
     public function add() {
         $data = array(
-            'CODD_DESC' => '',
+            'kode_jenjang' => '',
             'CODD_FLNM' => '',
-            'CODD_VALU' => '',
+            'nama_jenjang' => '',
         );
 
         return $data;
@@ -150,36 +131,11 @@ class jenjang_pends extends CI_Model {
      */
     public function save() {
 
-        $query = $this->db->query("select CODD_FLNM,CODD_VALU,CODD_DESC from th_codexd where CODD_FLNM ='KODE_LEVL' ORDER BY CODD_VALU DESC")->row();
-
-        $kode = $query->CODD_VALU;
-        
-        //var_dump($kode);
-        //exit();
-
-
-        $kode_val = "";
-        if ($kode == "") {
-            $kode_val = "00";
-        } else {
-            if ($kode < 10) {
-                $kode_val = '0' . (int) $kode + 1;
-            } else {
-                $kode_val = (int) $kode + 1;
-            }
-        }
-        //var_dump($kode);
-        //		var_dump($kode_val);
-//var_dump($this->input->post('CODD_DESC', TRUE));
-        //	exit();
-
         $data = array(
-            'CODD_DESC' => strip_tags($this->input->post('CODD_DESC', TRUE)),
-            'CODD_FLNM' => 'KODE_LEVL',
-            'CODD_VALU' => $kode_val,
+            'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
+            'nama_jenjang' =>  strip_tags($this->input->post('nama_jenjang', TRUE)),
         );
-
-        $this->db->insert('th_codexd', $data);
+        $this->db->insert('tabel_jenjang', $data);
     }
 
     /**
@@ -191,15 +147,13 @@ class jenjang_pends extends CI_Model {
      *
      */
     public function update($id) {
-        $data = array(
-            //'CODD_DESC' => strip_tags($this->input->post('CODD_DESC', TRUE)),
-            'CODD_FLNM' => strip_tags($this->input->post('CODD_FLNM', TRUE)),
-            'CODD_VALU' => strip_tags($this->input->post('CODD_FLNM', TRUE)),
+      $data = array(
+            'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
+            'nama_jenjang' =>  strip_tags($this->input->post('nama_jenjang', TRUE)),
         );
 
-
-        $this->db->where('CODD_VALU', $id);
-        $this->db->update('th_codexd', $data);
+        $this->db->where('kode_jenjang', $id);
+        $this->db->update('tabel_jenjang', $data);
     }
 
     /**
@@ -211,8 +165,8 @@ class jenjang_pends extends CI_Model {
      *
      */
     public function destroy($id) {
-        $this->db->where('CODD_VALU', $id);
-        $this->db->delete('th_codexd');
+        $this->db->where('kode_jenjang', $id);
+        $this->db->delete('tabel_jenjang');
     }
 
 }

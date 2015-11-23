@@ -42,8 +42,8 @@
                 <thead>
                     <tr>
 
-                        <th> Kode Tingkatan</th>   
-                        <th> Nama Tingkatan</th>   
+                        <th> Kode Jenjang</th>   
+                        <th> Nama Jenjang</th>   
 
 
 
@@ -56,8 +56,8 @@
 
                     <?php foreach ($jenjang_pends as $jenjang_pend) : ?>
                         <tr>	               
-                            <td><?php echo $jenjang_pend['CODD_VALU']; ?></td>
-                            <td><?php echo $jenjang_pend['CODD_DESC']; ?></td>
+                            <td><?php echo $jenjang_pend['kode_jenjang']; ?></td>
+                            <td><?php echo $jenjang_pend['nama_jenjang']; ?></td>
 
 
 
@@ -67,19 +67,19 @@
                                 <!--
                                 <?php
                                 echo anchor(
-                                        site_url('jenjang_pend/show/' . $jenjang_pend['CODD_VALU']), '<i class="glyphicon glyphicon-eye-open"></i>', 'class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="Detail"'
+                                        site_url('jenjang_pend/show/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-eye-open"></i>', 'class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="Detail"'
                                 );
                                 ?>
                                 -->
                                 <?php
                                 echo anchor(
-                                        site_url('jenjang_pend/edit/' . $jenjang_pend['CODD_VALU']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
+                                        site_url('jenjang_pend/edit/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
                                 );
                                 ?>
 
                                 <?php
                                 echo anchor(
-                                        site_url('jenjang_pend/destroy/' . $jenjang_pend['CODD_VALU']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
+                                        site_url('jenjang_pend/destroy/' . $jenjang_pend['kode_jenjang']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                 );
                                 ?>   
 

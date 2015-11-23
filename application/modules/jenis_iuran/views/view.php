@@ -24,17 +24,17 @@
                 <div class="input-group pull-right">                      
                     <!--<input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> -->
                     <select name="q" id="q" class="form-control input-sm">
-                        <option value=""> - Cari Unit Sekolah -</option>
-                        <?php foreach ($unit_sekolah->result() as $d):?>
-                        <option value="<?= $d->kode_unit?>"> <?= $d->nama_unit?> </option>>
-                        <?php endforeach;?>
+                        <option value="kosong"> - Cari Unit Sekolah -</option>
+                        <?php foreach ($unit_sekolah->result() as $d): ?>
+                            <option value="<?= $d->kode_unit ?>"> <?= $d->nama_unit ?> </option>>
+                        <?php endforeach; ?>
                     </select>
                     <span class="input-group-btn">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i> Cari</button>
                     </span>
                 </div>
 
-                    
+
                 </form> 
                 <?php echo form_close(); ?>
             </div>
@@ -75,17 +75,15 @@
                                 ?> </td>
 
 
-                            <td><?php echo $jenis_iuran['kode_iuran']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_jenis_iuran']; ?></td>
 
                             <td><?php echo $jenis_iuran['nama_iuran']; ?></td>
-                            <td><?php echo $jenis_iuran['CODD_DESC']; ?></td>
-
-                            <td><?php echo $jenis_iuran['ACCT_NAMA']; ?></td>
-
+                            <td><?php echo $jenis_iuran['kode_tujuan']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_pendapatan']; ?></td>
                             <td><?php echo $jenis_iuran['kode_piutang']; ?></td>
                             <td><?php echo $jenis_iuran['kode_diterima']; ?></td>
+                            <td><?php echo $jenis_iuran['kode_iuran']; ?></td>
 
-                            <td><?php echo $jenis_iuran['kode_group']; ?></td>
 
 
 
@@ -95,13 +93,13 @@
 
                                 <?php
                                 echo anchor(
-                                        site_url('jenis_iuran/edit/' . $jenis_iuran['kode_iuran']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
+                                        site_url('jenis_iuran/edit/' . $jenis_iuran['kode_jenis_iuran']), '<i class="glyphicon glyphicon-edit"></i>', 'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
                                 );
                                 ?>
 
                                 <?php
                                 echo anchor(
-                                        site_url('jenis_iuran/destroy/' . $jenis_iuran['kode_iuran']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
+                                        site_url('jenis_iuran/destroy/' . $jenis_iuran['kode_jenis_iuran']), '<i class="glyphicon glyphicon-trash"></i>', 'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                 );
                                 ?>   
 
