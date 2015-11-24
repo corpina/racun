@@ -71,6 +71,8 @@ class unit_sekolahs extends CI_Model {
         $this->db->like('kode_unit', $keyword);
 
         $this->db->or_like('nama_lokasi', $keyword);
+        $this->db->or_like('nama_unit', $keyword);
+
 
         $this->db->or_like('fl.kode_lokasi', $keyword);
 

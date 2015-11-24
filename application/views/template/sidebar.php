@@ -53,7 +53,7 @@
 
                                     <li><a href="<?= base_url() ?>master_iuran"> Master Iuran</a></li>
                                     <li><a href="<?= base_url() ?>jenis_iuran">Jenis Iuran Siswa</a></li>
-                                    <li><a href="<?= base_url() ?>jenis_iuran">Komponen Iuran Siswa</a></li>
+                                    <li><a href="<?= base_url() ?>komponen_iuran">Komponen Iuran Siswa</a></li>
 
                             </li>
                             </ul>

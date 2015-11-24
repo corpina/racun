@@ -4,19 +4,19 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Description of jenjang_pend
+ * Description of komponen_iuran
  * @created on : Saturday, 31-Oct-2015 08:44:53
  * @author Arief Manggala Putra <manggala.corp@gmail.com>
  * Copyright 2015    
  */
-class jenjang_pends extends CI_Model {
+class komponen_iurans extends CI_Model {
 
     public function __construct() {
         parent::__construct();
     }
 
     /**
-     *  Get All data jenjang_pend
+     *  Get All data komponen_iuran
      *
      *  @param limit  : Integer
      *  @param offset : Integer
@@ -26,7 +26,7 @@ class jenjang_pends extends CI_Model {
      */
     public function get_all($limit, $offset) {
 
-        //4result = $this->db->get('jenjang_pend', $limit, $offset);
+        //4result = $this->db->get('komponen_iuran', $limit, $offset);
         $result = $this->db->get('tabel_jenjang', $limit, $offset);
 
         if ($result->num_rows() > 0) {
@@ -37,7 +37,7 @@ class jenjang_pends extends CI_Model {
     }
 
     /**
-     *  Count All jenjang_pend
+     *  Count All komponen_iuran
      *    
      *  @return Integer
      *
@@ -49,7 +49,7 @@ class jenjang_pends extends CI_Model {
     }
 
     /**
-     * Search All jenjang_pend
+     * Search All komponen_iuran
      *
      *  @param limit   : Integer
      *  @param offset  : Integer
@@ -62,10 +62,10 @@ class jenjang_pends extends CI_Model {
         $keyword = $this->session->userdata('keyword');
 
         $this->db->select("*");
-        $this->db->from('tabel_jenjang');
+        $this->db->where('nama_jenjang');
         $this->db->like('nama_jenjang', $keyword);
         $this->db->limit($limit, $offset);
-        $result = $this->db->get();
+        $result = $this->db->get('tabel_jenjang');
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -75,7 +75,7 @@ class jenjang_pends extends CI_Model {
     }
 
     /**
-     * Search All jenjang_pend
+     * Search All komponen_iuran
      * @param keyword : mixed
      *
      * @return Integer
@@ -83,15 +83,14 @@ class jenjang_pends extends CI_Model {
      */
     public function count_all_search() {
         $keyword = $this->session->userdata('keyword');
-        $this->db->select("*");
         $this->db->from('tabel_jenjang');
         $this->db->like('nama_jenjang', $keyword);
-
+       
         return $this->db->count_all_results();
     }
 
     /**
-     *  Get One jenjang_pend
+     *  Get One komponen_iuran
      *
      *  @param id : Integer
      *
@@ -110,7 +109,7 @@ class jenjang_pends extends CI_Model {
     }
 
     /**
-     *  Default form data jenjang_pend
+     *  Default form data komponen_iuran
      *  @return array
      *
      */
@@ -134,7 +133,7 @@ class jenjang_pends extends CI_Model {
 
         $data = array(
             'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
-            'nama_jenjang' => strip_tags($this->input->post('nama_jenjang', TRUE)),
+            'nama_jenjang' =>  strip_tags($this->input->post('nama_jenjang', TRUE)),
         );
         $this->db->insert('tabel_jenjang', $data);
     }
@@ -148,9 +147,9 @@ class jenjang_pends extends CI_Model {
      *
      */
     public function update($id) {
-        $data = array(
+      $data = array(
             'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
-            'nama_jenjang' => strip_tags($this->input->post('nama_jenjang', TRUE)),
+            'nama_jenjang' =>  strip_tags($this->input->post('nama_jenjang', TRUE)),
         );
 
         $this->db->where('kode_jenjang', $id);

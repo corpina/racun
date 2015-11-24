@@ -60,10 +60,10 @@ class master_iurans extends CI_Model {
         $keyword = $this->session->userdata('keyword');
 
         $this->db->select("*");
-        $this->db->where('nama_iuran');
+        $this->db->from('tabel_iuran');
         $this->db->like('nama_iuran', $keyword);
         $this->db->limit($limit, $offset);
-        $result = $this->db->get('tabel_iuran');
+        $result = $this->db->get();
 
         if ($result->num_rows() > 0) {
             return $result->result_array();
@@ -81,6 +81,7 @@ class master_iurans extends CI_Model {
      */
     public function count_all_search() {
         $keyword = $this->session->userdata('keyword');
+        $this->db->select("*");
         $this->db->from('tabel_iuran');
         $this->db->like('nama_iuran', $keyword);
 
@@ -116,7 +117,6 @@ class master_iurans extends CI_Model {
         $data = array(
             'kode_iuran' => '',
             'nama_iuran' => '',
-            
         );
 
         return $data;
@@ -149,7 +149,7 @@ class master_iurans extends CI_Model {
      *
      */
     public function update($id) {
-         $data = array(
+        $data = array(
             'kode_iuran' => strip_tags($this->input->post('kode_iuran', TRUE)),
             'nama_iuran' => strip_tags($this->input->post('nama_iuran', TRUE)),
         );

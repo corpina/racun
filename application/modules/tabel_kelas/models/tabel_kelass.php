@@ -70,10 +70,12 @@ class tabel_kelass extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('tabel_kelas tm');
-        $this->db->join('tahun_ajar td', 'tm.tahun_ajar=td.tahun_ajar');
+        $this->db->join('tahun_ajar td', 'tm.thn_ajar=td.thn_ajar');
         $this->db->join('unit_sekolah fu', 'fu.kode_unit=tm.kode_unit');
         $this->db->join('tabel_jenjang tj', 'tj.kode_jenjang=tm.kode_jenjang');
         $this->db->like('nama_kelas', $keyword);
+        $this->db->or_like('nama_unit', $keyword);
+
         $this->db->limit($limit, $offset);
         $result = $this->db->get();
 
@@ -198,7 +200,7 @@ class tabel_kelass extends CI_Model {
             'kode_kelas' => $id,
             'nama_kelas' => strip_tags($this->input->post('nama_kelas', TRUE)),
             'kode_jenjang' => strip_tags($this->input->post('kode_jenjang', TRUE)),
-            //'status_aktif' => strip_tags($this->input->post('status_aktif', TRUE)),
+                //'status_aktif' => strip_tags($this->input->post('status_aktif', TRUE)),
         );
 
 
