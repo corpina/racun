@@ -38,7 +38,7 @@
                 <?php echo form_open(site_url('komponen_iuran/' . $action), 'role="form" class="form-horizontal" id="form_komponen_iuran" parsley-validate'); ?>
 
                 <div class="form-group">
-                    <label for="kode_jenjang" class="col-md-2 control-label">Kode Jenjang</label>
+                    <label for="kode_jenjang" class="col-md-2 control-label">Kode Jenjang<span class="required-input">*</span></label>
                     <div class="col-md-6">                                   
                         <?php
                         echo form_input(
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_jenjang" class="col-md-2 control-label">Nama Jenjang</label>
+                    <label for="nama_jenjang" class="col-md-2 control-label">Nama Jenjang<span class="required-input">*</span></label>
                     <div class="col-md-6">                                   
                         <?php
                         echo form_input(
