@@ -107,12 +107,6 @@
                 </div>
             </div>
 
-
         </div><!-- end x_panel -->
-
-
-
     </div>
-
-
 </div>

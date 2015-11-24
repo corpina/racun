@@ -33,6 +33,7 @@ class komponen_iuran extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Komponan Iuran Siswa";
         $data['total'] = $config['total_rows'];
         $data['pagination'] = $this->pagination->create_links();
         $data['number'] = (int) $this->uri->segment(3) + 1;
@@ -47,6 +48,7 @@ class komponen_iuran extends CI_Controller {
     public function add() {
         $data['komponen_iuran'] = $this->komponen_iurans->add();
         $data['action'] = 'komponen_iuran/save';
+        $data['title'] = "Komponan Iuran Siswa";
 
 
         $this->template->display('komponen_iuran/form', $data);
@@ -61,6 +63,7 @@ class komponen_iuran extends CI_Controller {
 
             $data['komponen_iuran'] = $this->komponen_iurans->get_one($id);
             $data['action'] = 'komponen_iuran/save/' . $id;
+            $data['title'] = "Komponan Iuran Siswa";
 
 
             $this->template->display('komponen_iuran/form', $data);
@@ -151,6 +154,7 @@ class komponen_iuran extends CI_Controller {
         );
 
         $this->pagination->initialize($config);
+        $data['title'] = "Komponan Iuran Siswa";
         $data['total'] = $config['total_rows'];
         $data['number'] = (int) $this->uri->segment(3) + 1;
         $data['pagination'] = $this->pagination->create_links();
